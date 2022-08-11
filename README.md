@@ -9,7 +9,7 @@
 <span>Patrick Passos – 03221054</span><br>
 </h4>
 <h5>Aplicação cliente e Web para o monitoramento de componentes de hardware / sistemas operacionais, utilizando os conceitos do ITIL de Monitoramento de Serviços, Gestão de Incidentes e Gestão de Problemas.
-<br>
+<br><br>
 Empresa: REC<br>
 Projeto: Take One | Monitoração do Cinema<br>
 Segmento: Mercado AudioVisual<br>
