@@ -1,5 +1,5 @@
 # Projeto REC - Take One - Pesquisa e Inovação
-<h3 align="center">São Paulo Tech School</h3>
+<h2 align="center">São Paulo Tech School</h2>
 <h4 align="center" >
   <span>Eduardo Begattini – 03221008</span><br>
 <span>Erika Rocha – 03221023</span><br>
