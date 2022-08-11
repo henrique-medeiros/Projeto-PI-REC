@@ -1,4 +1,4 @@
-# Projeto REC - Take One - Pesquisa e Inovação
+# Projeto Take One - REC - Pesquisa e Inovação
 <h2 align="center">São Paulo Tech School</h2>
 <h4 align="center" >
   <span>Eduardo Begattini – 03221008</span><br>
