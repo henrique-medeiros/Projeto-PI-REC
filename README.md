@@ -11,7 +11,7 @@
 <h5>Aplicação cliente e Web para o monitoramento de componentes de hardware / sistemas operacionais, utilizando os conceitos do ITIL de Monitoramento de Serviços, Gestão de Incidentes e Gestão de Problemas.
 <br><br>
 Empresa: REC<br>
-Projeto: Take One | Monitoração do Cinema<br>
+Projeto: Take One | Monitoramento do Cinema<br>
 Segmento: Mercado AudioVisual<br>
 Meta: Monitorar o sistema operacional dos Totens / Controle Financeiro / Análises e Relatórios / Estoque e Inventário (Informações sobre Salas) / Controle de Funcionários
 </h5>
