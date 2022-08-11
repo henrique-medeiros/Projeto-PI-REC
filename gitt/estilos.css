@@ -1,0 +1,92 @@
+body{
+    margin:0px 0px 0px 0px;
+    font-family: monospace;
+    background-color:black;
+
+}
+/* ctrl+k + ctrl+c = comentário */
+/* no margin a sewuencia de valores condiz com os lados, o primeiro é o top, segundo left, terceiro bottom e o quarto right */
+/* colocando "." é para classes e "#" para id, pra fazer o chamadinho deles e poder modificar*/
+ .header{
+    height: 100px;
+     width: 100%;
+     border-bottom: 5px #32b9cd solid;
+    
+ }
+ .titulo{
+     margin: 0px;
+     color: #32b9cd;
+
+ }
+
+ .container{
+     width: 80%;
+     margin: auto;
+     display: flex;
+    
+
+     
+  
+ }
+ .header .container{
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+
+ }
+
+ .navbar{
+     width: 500px  ;
+     list-style: none;
+     align-items: center;
+     justify-content: space-between;
+     color: orange;
+     display: flex;
+     padding: 0;
+ }
+ 
+p{
+    color: white;
+}
+/*Começo do banner*/
+
+.banner{
+    height: 900px;
+    background-image: url("../projeto-iot-revolucionario-julia/imgs/bg-jelly-fish-para-home.png");
+    background-size: cover;
+}
+
+.banner .card {
+    background-color:rgb(163, 186, 206);
+  text-align: center;
+    height: 650px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 9px;
+}
+
+.banner  .card {
+  color: #e75459;
+}
+.btn{
+    font-family: monospace;
+    margin-top: 10px;
+    font-weight: 600;
+    background-color: #e75459;
+    color: white;
+    font-size: 18px;
+    border-radius: 4px;
+    padding: 10px 15px;
+}
+
+input{
+    height: 40px;
+    border: 2px solid #e75459;
+    border-radius: 8px;
+
+}

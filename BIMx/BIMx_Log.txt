@@ -1,0 +1,42 @@
+//BIMx
+//Copyright 2002-2013  Graphisoft SE  All rights reserved
+//Tue May  4 02:56:52 2021
+
+//0.001 zrEngine_InitCore
+  Program directory is 'C:\Program Files\GRAPHISOFT\BIMx Desktop Viewer\'
+  Data directory is 'C:\Program Files\GRAPHISOFT\BIMx Desktop Viewer\'
+  User directory is 'C:\Users\Famil\OneDrive\Documentos'
+
+//0.046 zrEngine_Startup
+  Initializing memory manager
+  Initializing strings
+
+//0.179 [error] zrCore_GetResource
+  !fopen : 'RBRA/Strings.bin'
+
+//0.181 zrStrings_Load
+  Number of strings to load = 1056
+
+//0.381 zrEngine_Shutdown
+  Shutting down interface
+  Shutting down measure tool
+  Shutting down skybox
+  Shutting down gallery
+  Shutting down world
+  Shutting down layers
+  Shutting down camera
+  Shutting down dev mode
+  Shutting down engine
+  Shutting down strings
+  Shutting down opengl
+  Shutting down input
+  Shutting down BXEngine
+  Shutting down window
+  Shutting down memory manager
+
+//0.570 zrMem_Shutdown
+  Shutting down
+  Freeing 16 777 216 bytes used by temp buffer
+
+//0.573 zrEngine_Shutdown
+  Shutting down core

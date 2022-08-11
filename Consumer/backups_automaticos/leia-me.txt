@@ -1,0 +1,1 @@
+Por segurança, os backups do banco de dados e demais arquivos utilizados pelo Consumer são realizados neste local apenas quando o usuário não configurou sua pasta padrão de backups.

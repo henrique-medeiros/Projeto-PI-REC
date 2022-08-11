@@ -1,0 +1,6 @@
+BIMx Engine
+(c) Graphisoft SE
+
+Terminating engine...
+Engine quit.
+* Leaking '9_C:\Program Files\GRAPHISOFT\BIMx Desktop Viewer\Data\Strings/RBRA/Strings.bin'!
