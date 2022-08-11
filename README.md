@@ -1,5 +1,5 @@
 # Projeto De Pesquisa e Inovação
-<div align="center">
+<div align="center" display="flex">
   <span>Eduardo Begattini – 03221008</span>
 <span>Erika Rocha – 03221023</span>
 <span>Gabriel Medeiros – 03221012</span>
