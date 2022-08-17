@@ -23,41 +23,44 @@
         </div>
     </nav>
     <div id="main-container">
-        <h1>Cadastre-se</h1>
+        <h1>Cadastre Sua Empresa!</h1>
         <form id="register-form">
             <div class="full-box">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Digite seu email">
+                <label for="email">Email Institucional:</label>
+                <input type="email" name="email" id="email" placeholder="Digite o Email Institucional">
             </div>
             <div class="half-box spacing">
-                <label for="name">Nome</label>
+                <label for="name">Nome da Empresa:</label>
                 <input type="text" name="name" id="name" placeholder="Digite o seu nome">
             </div>
             <div class="half-box">
-                <label for="last name">Sobrenome</label>
-                <input type="text" name="lastname" id="lastname" placeholder="Digite o seu sobrenome">
+                <label for="last name">CNPJ da Empresa:</label>
+                <input type="text" name="lastname" id="lastname" placeholder="Digite o CNPJ da Empresa">
             </div>
             <div class="half-box spacing">
-                <label for="password">Senha</label>
-                <input type="password" name="password" id="password" placeholder="Digite a sua senha">
+                <label for="password">Endereço:</label>
+                <input type="password" name="password" id="password" placeholder="CEP">
             </div>
-            <div class="half-box">
-                <label for="passconfirmation">Confirmação de senha</label>
-                <input type="password" name="passconfirmation" id="passconfirmation" placeholder="Confirme a sua senha">
+            <div class="full-box">
+                <input type="text" name="rua" id="rua" placeholder="Rua">
+            </div>
+            <div class="half-box spacing">
+                <input type="password" name="passconfirmation" id="passconfirmation" placeholder="Nº">
+            </div>
+            <div class="half-box spacing">
+                <input type="password" name="passconfirmation" id="passconfirmation" placeholder="Complemento">
             </div>
             <div class="full-box">
                 <input type="checkbox" name="agreement" id="agreement">
                 <label for="agreement" id="agreement-label">Eu li e aceito os<a href="#"> termos de uso</a></label>
-            </div>
-            <div class="full-box">
-                <input type="submit" id="btn-submit" value="Cadastrar">
+                <input type="submit2" id="btn-submit Cadastrar" value="Cadastrar Empresa">
             </div>
         </form>
     </div>
     <p class="error-validation template"></p>
     <script src="js/scripts.js"></script>
      <!-- Footer-->
-     <footer class="bg-light py-5">
+     <footer class="bg-light py-50">
         <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - REC.</div></div>
     </footer>
     

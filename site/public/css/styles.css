@@ -7514,6 +7514,13 @@ textarea.form-control-lg {
   padding-top: 3rem !important;
   padding-bottom: 3rem !important;
 }
+/* PY-50 É O FOOTER CADASTRAR EMPRESA*/
+.py-50 {
+  background-color: #545454;
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+  margin-top: 30vh;
+}
 
 .pt-0 {
   padding-top: 0 !important;
@@ -11572,6 +11579,25 @@ input[type="submit"]:hover{
   transition: .5s;
 }
 
+input[type="submit2"]{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+  color: #FFF;
+  background-color: #545454;
+  cursor: pointer;
+}
+
+input[type="submit2"]:hover{
+  background-color: #fff;
+  color: #000;
+  transition: .5s;
+}
+
 /* redes sociais */
 
 #social-container, #social-container p{
@@ -11631,7 +11657,7 @@ a{
 .cadastro-body{
   padding-top: 5vh; /* view height -> 5% da tela */
   background-image: url(../assets/img/bckground.png);
-  background-size: cover;
+  background-size: auto;
 }
 
 /* formulário */
