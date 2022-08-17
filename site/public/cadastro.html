@@ -50,7 +50,7 @@
                 <label for="agreement" id="agreement-label">Eu li e aceito os<a href="#"> termos de uso</a></label>
             </div>
             <div class="full-box">
-                <input type="submit" id="btn-submit" value="Cadastrar">
+                <input type="button" class="botao-cadastro" onclick="continuar()" id="btn-submit" value="Cadastrar">
             </div>
         </form>
     </div>
@@ -63,3 +63,8 @@
     
 </body>
 </html>
+<script>
+    function continuar() {
+        window.location = "login.html"
+    }
+</script>

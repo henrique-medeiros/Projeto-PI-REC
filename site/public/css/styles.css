@@ -11670,13 +11670,18 @@ a{
   background-color: #FFF;
   border-radius: 10px;
   padding: 25px;
-  height: 100vh;
+  height: 85vh;
+  margin-top: 10vh;
 }
 
 #main-container h1{
   text-align: center;
   margin-bottom: 25px;
   font-size: 1.6rem; /* Adaptada a elemento root */
+}
+
+.botao-cadastro {
+  
 }
 
 form{
@@ -11715,7 +11720,7 @@ input:focus{
   border-color: #00C2CB;
 }
 
-input [type = "submit"]{
+input [type = "button"]{
   background-color: #00C2CB;
   color: #FFF;
   border: none;
