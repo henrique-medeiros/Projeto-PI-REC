@@ -3039,7 +3039,7 @@ textarea.form-control-lg {
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #545454;
+  background-color: #000;
   border-color:#545454;
 
 }
@@ -7392,6 +7392,7 @@ textarea.form-control-lg {
 
 .mb-4 {
   margin-bottom: 1.5rem !important;
+  color: #fff;
 }
 
 .mb-5 {
@@ -11328,7 +11329,7 @@ body {
 }
 
 .text-white-75 {
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: #fff !important;
 }
 
 .btn-xl {
@@ -11343,7 +11344,7 @@ body {
 hr.divider {
   height: 0.2rem;
   max-width: 3.25rem;
-  margin: 1.5rem auto;
+  margin: 2.5rem auto;
   background-color: #00C2CB;
   opacity: 1;
 }
@@ -11378,7 +11379,7 @@ hr.divider-light {
 @media (min-width: 992px) {
   #mainNav {
     box-shadow: none;
-    background-color: transparent;
+    background-color: #fff;
   }
   #mainNav .navbar-brand {
     color: #00bec7;
@@ -11427,9 +11428,9 @@ header.masthead {
 header.masthead h1, header.masthead .h1 {
   font-size: 2.25rem;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   header.masthead {
-    height: 100vh;
+    height: 10vh;
     min-height: 40rem;
     padding-top: 4.5rem;
     padding-bottom: 0;
