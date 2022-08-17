@@ -1,6 +1,6 @@
 # Projeto Take One - REC - Pesquisa e Inovação
 <h2 align="center">São Paulo Tech School</h2>
-<h5 align="center">https://gogoncalves.github.io/Projeto-PI-REC/blob/master/site/public/index.html</h5>
+<h5 align="center">https://gogoncalves.github.io/Projeto-PI-REC/site/public/index.html</h5>
 <h4 align="center" >
   <span>Eduardo Begattini – 03221008</span><br>
 <span>Erika Rocha – 03221023</span><br>
