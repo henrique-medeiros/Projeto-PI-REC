@@ -4,50 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de usuário | REC.</title>
+    <title>Totem | REC.</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="cadastro-body">
+<body class="totem-body">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="index.html">REC.</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li> -->
                     <!-- <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li> -->
-                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="index.html">Sair</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div id="main-container">
-        <h1>Cadastre-se</h1>
+    <div id="main-container2">
+        <h1>Cadastrar totem</h1>
         <form id="register-form">
             <div class="full-box">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Digite seu email">
-            </div>
-            <div class="half-box spacing">
-                <label for="name">Nome</label>
-                <input type="text" name="name" id="name" placeholder="Digite o seu nome">
+                <label for="modelo">Modelo:</label>
+                <input type="text" name="modelo" id="modelo" placeholder="Modelo do totem">
             </div>
             <div class="half-box">
-                <label for="last name">Sobrenome</label>
-                <input type="text" name="lastname" id="lastname" placeholder="Digite o seu sobrenome">
-            </div>
-            <div class="half-box spacing">
-                <label for="password">Senha</label>
-                <input type="password" name="password" id="password" placeholder="Digite a sua senha">
-            </div>
-            <div class="half-box">
-                <label for="passconfirmation">Confirmação de senha</label>
-                <input type="password" name="passconfirmation" id="passconfirmation" placeholder="Confirme a sua senha">
-            </div>
-            <div class="full-box">
-                <input type="checkbox" name="agreement" id="agreement">
-                <label for="agreement" id="agreement-label">Eu li e aceito os<a href="#"> termos de uso</a></label>
+                <label for="serial">Número serial:</label>
+                <input type="text" name="serial" id="serial" placeholder="Digite o número serial">
             </div>
             <div class="full-box">
                 <input type="button" class="botao-cadastro" onclick="continuar()" id="btn-submit" value="Cadastrar">
@@ -57,7 +42,7 @@
     <p class="error-validation template"></p>
     <script src="js/scripts.js"></script>
      <!-- Footer-->
-     <footer class="bg-light py-50">
+     <footer class="py-50">
         <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - REC.</div></div>
     </footer>
     
@@ -65,6 +50,6 @@
 </html>
 <script>
     function continuar() {
-        window.location = "empresa.html"
+        window.location = ""
     }
 </script>

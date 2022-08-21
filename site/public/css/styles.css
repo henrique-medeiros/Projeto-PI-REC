@@ -7515,12 +7515,12 @@ textarea.form-control-lg {
   padding-top: 3rem !important;
   padding-bottom: 3rem !important;
 }
-/* PY-50 É O FOOTER CADASTRAR EMPRESA*/
+/* PY-50 É O FOOTER CADASTRAR EMPRESA/  USUÁRIO/ TOTEM*/
 .py-50 {
   background-color: #545454;
   padding-top: 3rem !important;
   padding-bottom: 3rem !important;
-  margin-top: 20vh;
+  margin-top: 10vh;
 }
 
 .pt-0 {
@@ -11524,9 +11524,10 @@ a:hover{
   margin-left: auto;
   margin-right: auto;
   padding: 20px 30px;
-  margin-top: 10vh;
   border-radius: 10px;
   text-align: center;
+  margin-top: 15vh;
+  
 }
 
 /* formulário */
@@ -11629,7 +11630,7 @@ input[type="submit2"]:hover{
   margin-bottom: 10px;
 }
 
-/* CADASTRO */
+/* CADASTRO DE USUÁRIO */
 
 /* Geral cadastro */
 
@@ -11681,7 +11682,270 @@ a{
 }
 
 .botao-cadastro {
-  
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+  color: #FFF;
+  background-color: #00C2CB;
+  cursor: pointer;
+}
+
+.botao-cadastro:hover{
+  background-color: #545454;
+  color: #fff;
+  transition: .5s;
+}
+
+form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.full-box{
+  flex: 1 1 100%;
+  position: relative;
+}
+
+.half-box{
+  flex: 1 1 45%;
+  position: relative;
+}
+
+.spacing{
+  margin-right: 2.5%;
+}
+
+label{
+  font-weight: bold;
+  font-size: .8rem;
+}
+
+input{
+
+  padding: 10px;
+  font-size: .9rem;
+  margin-bottom: 40px;
+}
+
+input:focus{
+  border-color: #00C2CB;
+}
+
+input [type = "button"]{
+  background-color: #00C2CB;
+  color: #FFF;
+  border: none;
+  border-radius: 20px;
+  height: 40px;
+  cursor: pointer;
+}
+
+#agreement{
+  margin-right: 5px;
+}
+
+#agreement, #agreement-label{
+  display: inline-block;
+  width: auto;
+}
+
+/* CADASTRO  DE TOTEM*/
+
+/* Geral cadastro */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica;
+  color: #323232;
+  border: none;
+}
+
+input, label{
+  display: block;
+  width: 100%;
+}
+
+input:focus, label:focus{
+  outline: none;
+}
+
+a{
+  color: #00C2CB;
+}
+
+.totem-body{
+  padding-top: 5vh; /* view height -> 5% da tela */
+  background-image: url(../assets/img/bckground.png);
+  background-size: auto;
+}
+
+/* formulário */
+
+#main-container2{
+  width: 325px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #FFF;
+  border-radius: 10px;
+  padding: 25px;
+  height: 60vh;
+  margin-top: 10vh;
+}
+
+#main-container2 h1{
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.6rem; /* Adaptada a elemento root */
+}
+
+.botao-cadastro {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+  color: #FFF;
+  background-color: #00C2CB;
+  cursor: pointer;
+}
+
+.botao-cadastro:hover{
+  background-color: #545454;
+  color: #fff;
+  transition: .5s;
+}
+
+form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.full-box{
+  flex: 1 1 100%;
+  position: relative;
+}
+
+.half-box{
+  flex: 1 1 45%;
+  position: relative;
+}
+
+.spacing{
+  margin-right: 2.5%;
+}
+
+label{
+  font-weight: bold;
+  font-size: .8rem;
+}
+
+input{
+
+  padding: 10px;
+  font-size: .9rem;
+  margin-bottom: 40px;
+}
+
+input:focus{
+  border-color: #00C2CB;
+}
+
+input [type = "button"]{
+  background-color: #00C2CB;
+  color: #FFF;
+  border: none;
+  border-radius: 20px;
+  height: 40px;
+  cursor: pointer;
+}
+
+#agreement{
+  margin-right: 5px;
+}
+
+#agreement, #agreement-label{
+  display: inline-block;
+  width: auto;
+}
+
+/* CADASTRO DE EMPRESA */
+
+/* Geral cadastro */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica;
+  color: #323232;
+  border: none;
+}
+
+input, label{
+  display: block;
+  width: 100%;
+}
+
+input:focus, label:focus{
+  outline: none;
+}
+
+a{
+  color: #00C2CB;
+}
+
+.empresa-body{
+  padding-top: 5vh; /* view height -> 5% da tela */
+  background-image: url(../assets/img/bckground.png);
+  background-size: auto;
+}
+
+/* formulário */
+
+#main-container1{
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #FFF;
+  border-radius: 10px;
+  padding: 25px;
+  height: 125vh;
+  margin-top: 10vh;
+}
+
+#main-container1 h1{
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.6rem; /* Adaptada a elemento root */
+}
+
+.botao-cadastro {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+  color: #FFF;
+  background-color: #00C2CB;
+  cursor: pointer;
+}
+
+.botao-cadastro:hover{
+  background-color: #545454;
+  color: #fff;
+  transition: .5s;
 }
 
 form{
