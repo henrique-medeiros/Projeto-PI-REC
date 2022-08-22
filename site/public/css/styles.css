@@ -595,7 +595,7 @@ progress {
   margin-top: -1rem;
   margin-bottom: 1rem;
   font-size: 0.875em;
-  color: #6c757d;
+  color: #00bec7;
 }
 .blockquote-footer::before {
   content: "— ";
@@ -7866,6 +7866,11 @@ textarea.form-control-lg {
 .bg-light {
   --bs-bg-opacity: 1;
   background-color: #545454 !important;
+}
+
+.bg-light2 {
+  --bs-bg-opacity: 1;
+  background-color: #00bec7 !important;
 }
 
 .bg-dark {
