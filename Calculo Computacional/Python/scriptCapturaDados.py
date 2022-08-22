@@ -3,6 +3,26 @@ import psutil
 import time
 from datetime import datetime
 
+import mysql.connector
+from mysql.connector import errorcode
+config = {
+  'host':'localhost',
+  'user':'root',
+  'password':'#Gf51363594800',
+  'database':'REC'
+}
+try:
+   conn = mysql.connector.connect(**config)
+   print("Conexão estabilizada")
+except mysql.connector.Error as err:
+  if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+    print("Algo está errado com o username ou a senha")
+  elif err.errno == errorcode.ER_BAD_DB_ERROR:
+    print("Banco de dados não existe")
+  else:
+    print(err)
+else:
+  cursor = conn.cursor()
 
 def captura():
     print("Seja bem-vindo ao sistema de captura de dados do seu Hardware \U0001F604")
@@ -13,6 +33,7 @@ def captura():
     
     porcentagem =  psutil.cpu_percent(interval = None , percpu = False)
     usoDisco = psutil.disk_usage('C:\\')
+    memoria = psutil.virtual_memory().percent
     
     # nucleos = psutil.cpu_count(logical=False)
     # processadoresLogicos = psutil.cpu_count()
@@ -54,13 +75,23 @@ def captura():
         print("\U0001F750 Iniciando captura dos dados...", "\n--------")
         while(desejo == 1):
             dataHora = datetime.now()
-            dataHoraFormat = dataHora.strftime('%d/%m/%Y %H:%M:%S')
+            dataHoraFormat = dataHora.strftime('%Y/%m/%d %H:%M:%S')
+            
             print ("\U0001F4BB - Porcentagem de Utilização da CPU: {:.1f}%".format(porcentagem),
             "\n\U0001F4BB - Porcentagem de Utilização do Disco:", usoDisco[3],'%',
             "\n\U0001F4BB - Porcentagem de Utilização da Memoria:",psutil.virtual_memory().percent,'%',"\n\U0001F55B - Data e Hora:", dataHoraFormat,"\n--------")
+            
+            cursor.execute("INSERT INTO Leitura (idLeitura, 1000, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s,%s, %s, %s,%s);", ( 1000, porcentagem, memoria, usoDisco,dataHoraFormat))
+            cursor.execute("INSERT INTO Leitura (idLeitura, 1001, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s,%s, %s, %s,%s);", (porcentagem * 1.10, memoria * 1.15, usoDisco * 1.20 ,dataHoraFormat))
+            cursor.execute("INSERT INTO Leitura (idLeitura, 1002, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s,%s, %s, %s,%s);", (porcentagem * 1.15, memoria * 1.20, usoDisco * 1.25,dataHoraFormat))
+            cursor.execute("INSERT INTO Leitura (idLeitura, 1003, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s,%s, %s, %s,%s);", (porcentagem * 1.20, memoria * 1.25, usoDisco * 1.30,dataHoraFormat))
+
             time.sleep(tempo)
             desejo = 1        
 
 
 captura()
+
+
+ 
 
