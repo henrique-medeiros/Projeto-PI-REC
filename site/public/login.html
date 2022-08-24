@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | REC.</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -31,9 +32,21 @@
         <form action="">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" placeholder="Digite seu email" autocomplete="off">
+           
             <label for="password">Senha</label>
             <input type="password" name="password" id="password" placeholder="Digite a sua senha">
             <a href="#" id="forgot-pass">Esqueceu a senha?</a>
+            <br><br>
+
+            <div class="full-box">
+                <label for="name">Tipo de login:</label>
+                <select name="" id="">
+                    <option value="" disabled selected>-Selecione uma opção--</option>
+                    <option value="">Analista</option>
+                    <option value="">Administrador</option>
+                </select>
+            </div>
+         
             <input type="submit" value="Login">
         </form>
         <div id="social-container">

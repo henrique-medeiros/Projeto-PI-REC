@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de empesa | REC.</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="empresa-body">
+  
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html">REC.</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="main-container1">
+        <h1>Cadastre sua empresa</h1>
+        <form id="register-form">
+            <div class="full-box">
+                <label for="razao">Razão:</label>
+                <input type="text" name="razao" id="razao" placeholder="Razão da empresa">
+            </div>
+            <div class="full-box">
+                <label for="cnpj">CNPJ:</label>
+                <input type="text" name="cnpj" id="cnpj" placeholder="CNPJ da empresa">
+            </div>
+            <div class="half-box spacing">
+                <label for="cep">CEP:</label>
+                <input type="text" name="cep" id="cep" placeholder="CEP da empresa" onkeyup="pesquisacep(this.value)">
+            </div>
+            <div class="half-box spacing">
+                <label for="numero">Nº:</label>
+                <input type="text" name="numero" id="numero" placeholder="Digite o número">
+            </div>
+            <div class="half-box spacing">
+                <input type="text" name="logradouro" id="logradouro" placeholder="Logradouro">
+            </div>
+           
+            <div class="half-box spacing">
+                <input type="text" name="bairro" id="bairro" placeholder="Bairro">
+            </div>
+            <div class="half-box spacing">
+                <input type="text" name="cidade" id="cidade" placeholder="Cidade">
+            </div>
+            <div class="half-box spacing">
+                <input type="text" name="estado" id="estado" placeholder="Estado">
+            </div>
+            <div class="half-box spacing">
+                <label for="complemento">Complemento:</label>
+                <input type="text" name="complemento" id="complemento" placeholder="Complemento">
+            </div>
+            <div class="full-box">
+                <input type="checkbox" name="agreement" id="agreement">
+                <label for="agreement" id="agreement-label">Eu li e aceito os<a href="#"> termos de uso</a></label>
+                <div class="full-box">
+                    <input type="button" class="botao-cadastro" onclick="continuar()" id="btn-submit" value="Cadastrar">
+                </div>
+            </div>
+        </form>
+    </div>
+    <p class="error-validation template"></p>
+    <script src="js/scripts.js"></script>
+     <!-- Footer-->
+     <footer class="py-50">
+        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - REC.</div></div>
+    </footer>
+
+</body>
+</html>
+<script>
+    function continuar() {
+        window.location = "login.html"
+    }
+
+    function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('logradouro').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('estado').value=("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('logradouro').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('estado').value=(conteudo.uf);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+
+    function pesquisacep(valor) {
+
+//Nova variável "cep" somente com dígitos.
+var cep = valor.replace(/\D/g, '');
+
+//Verifica se campo cep possui valor informado.
+if (cep != "") {
+
+    //Expressão regular para validar o CEP.
+    var validacep = /^[0-9]{8}$/;
+
+    //Valida o formato do CEP.
+    if(validacep.test(cep)) {
+
+        //Preenche os campos com "..." enquanto consulta webservice.
+        document.getElementById('logradouro').value="...";
+        document.getElementById('bairro').value="...";
+        document.getElementById('cidade').value="...";
+        document.getElementById('estado').value="...";
+
+        //Cria um elemento javascript.
+        var script = document.createElement('script');
+
+        //Sincroniza com o callback.
+        script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+        //Insere script no documento e carrega o conteúdo.
+        document.body.appendChild(script);
+
+    } //end if.
+    // else {
+    //     //cep é inválido.
+    //     limpa_formulário_cep();
+    //     alert("Formato de CEP inválido.");
+    // }
+} //end if.
+else {
+    //cep sem valor, limpa formulário.
+    limpa_formulário_cep();
+}
+};
+</script>

@@ -595,7 +595,7 @@ progress {
   margin-top: -1rem;
   margin-bottom: 1rem;
   font-size: 0.875em;
-  color: #6c757d;
+  color: #00bec7;
 }
 .blockquote-footer::before {
   content: "— ";
@@ -3039,7 +3039,7 @@ textarea.form-control-lg {
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #545454;
+  background-color: #000;
   border-color:#545454;
 
 }
@@ -7392,6 +7392,7 @@ textarea.form-control-lg {
 
 .mb-4 {
   margin-bottom: 1.5rem !important;
+  color: #fff;
 }
 
 .mb-5 {
@@ -7513,6 +7514,13 @@ textarea.form-control-lg {
   background-color: #545454;
   padding-top: 3rem !important;
   padding-bottom: 3rem !important;
+}
+/* PY-50 É O FOOTER CADASTRAR EMPRESA/  USUÁRIO/ TOTEM*/
+.py-50 {
+  background-color: #545454;
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+  margin-top: 10vh;
 }
 
 .pt-0 {
@@ -7858,6 +7866,11 @@ textarea.form-control-lg {
 .bg-light {
   --bs-bg-opacity: 1;
   background-color: #545454 !important;
+}
+
+.bg-light2 {
+  --bs-bg-opacity: 1;
+  background-color: #00bec7 !important;
 }
 
 .bg-dark {
@@ -11321,7 +11334,7 @@ body {
 }
 
 .text-white-75 {
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: #fff !important;
 }
 
 .btn-xl {
@@ -11336,7 +11349,7 @@ body {
 hr.divider {
   height: 0.2rem;
   max-width: 3.25rem;
-  margin: 1.5rem auto;
+  margin: 2.5rem auto;
   background-color: #00C2CB;
   opacity: 1;
 }
@@ -11371,7 +11384,7 @@ hr.divider-light {
 @media (min-width: 992px) {
   #mainNav {
     box-shadow: none;
-    background-color: transparent;
+    background-color: #fff;
   }
   #mainNav .navbar-brand {
     color: #00bec7;
@@ -11420,9 +11433,9 @@ header.masthead {
 header.masthead h1, header.masthead .h1 {
   font-size: 2.25rem;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   header.masthead {
-    height: 100vh;
+    height: 10vh;
     min-height: 40rem;
     padding-top: 4.5rem;
     padding-bottom: 0;
@@ -11516,9 +11529,10 @@ a:hover{
   margin-left: auto;
   margin-right: auto;
   padding: 20px 30px;
-  margin-top: 10vh;
   border-radius: 10px;
   text-align: center;
+  margin-top: 15vh;
+  
 }
 
 /* formulário */
@@ -11572,6 +11586,25 @@ input[type="submit"]:hover{
   transition: .5s;
 }
 
+input[type="submit2"]{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+  color: #FFF;
+  background-color: #545454;
+  cursor: pointer;
+}
+
+input[type="submit2"]:hover{
+  background-color: #fff;
+  color: #000;
+  transition: .5s;
+}
+
 /* redes sociais */
 
 #social-container, #social-container p{
@@ -11602,7 +11635,7 @@ input[type="submit"]:hover{
   margin-bottom: 10px;
 }
 
-/* CADASTRO */
+/* CADASTRO DE USUÁRIO */
 
 /* Geral cadastro */
 
@@ -11631,7 +11664,7 @@ a{
 .cadastro-body{
   padding-top: 5vh; /* view height -> 5% da tela */
   background-image: url(../assets/img/bckground.png);
-  background-size: cover;
+  background-size: auto;
 }
 
 /* formulário */
@@ -11643,13 +11676,33 @@ a{
   background-color: #FFF;
   border-radius: 10px;
   padding: 25px;
-  height: 94vh;
+  height: 100vh;
+  margin-top: 10vh;
 }
 
 #main-container h1{
   text-align: center;
   margin-bottom: 25px;
   font-size: 1.6rem; /* Adaptada a elemento root */
+}
+
+.botao-cadastro {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+  color: #FFF;
+  background-color: #00C2CB;
+  cursor: pointer;
+}
+
+.botao-cadastro:hover{
+  background-color: #545454;
+  color: #fff;
+  transition: .5s;
 }
 
 form{
@@ -11688,7 +11741,255 @@ input:focus{
   border-color: #00C2CB;
 }
 
-input [type = "submit"]{
+input [type = "button"]{
+  background-color: #00C2CB;
+  color: #FFF;
+  border: none;
+  border-radius: 20px;
+  height: 40px;
+  cursor: pointer;
+}
+
+#agreement{
+  margin-right: 5px;
+}
+
+#agreement, #agreement-label{
+  display: inline-block;
+  width: auto;
+}
+
+/* CADASTRO  DE TOTEM*/
+
+/* Geral cadastro */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica;
+  color: #323232;
+  border: none;
+}
+
+input, label{
+  display: block;
+  width: 100%;
+}
+
+input:focus, label:focus{
+  outline: none;
+}
+
+a{
+  color: #00C2CB;
+}
+
+.totem-body{
+  padding-top: 5vh; /* view height -> 5% da tela */
+  background-image: url(../assets/img/bckground.png);
+  background-size: auto;
+}
+
+/* formulário */
+
+#main-container2{
+  width: 325px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #FFF;
+  border-radius: 10px;
+  padding: 25px;
+  height: 60vh;
+  margin-top: 10vh;
+}
+
+#main-container2 h1{
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.6rem; /* Adaptada a elemento root */
+}
+
+.botao-cadastro {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+  color: #FFF;
+  background-color: #00C2CB;
+  cursor: pointer;
+}
+
+.botao-cadastro:hover{
+  background-color: #545454;
+  color: #fff;
+  transition: .5s;
+}
+
+form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.full-box{
+  flex: 1 1 100%;
+  position: relative;
+}
+
+.half-box{
+  flex: 1 1 45%;
+  position: relative;
+}
+
+.spacing{
+  margin-right: 2.5%;
+}
+
+label{
+  font-weight: bold;
+  font-size: .8rem;
+}
+
+input{
+
+  padding: 10px;
+  font-size: .9rem;
+  margin-bottom: 40px;
+}
+
+input:focus{
+  border-color: #00C2CB;
+}
+
+input [type = "button"]{
+  background-color: #00C2CB;
+  color: #FFF;
+  border: none;
+  border-radius: 20px;
+  height: 40px;
+  cursor: pointer;
+}
+
+#agreement{
+  margin-right: 5px;
+}
+
+#agreement, #agreement-label{
+  display: inline-block;
+  width: auto;
+}
+
+/* CADASTRO DE EMPRESA */
+
+/* Geral cadastro */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica;
+  color: #323232;
+  border: none;
+}
+
+input, label{
+  display: block;
+  width: 100%;
+}
+
+input:focus, label:focus{
+  outline: none;
+}
+
+a{
+  color: #00C2CB;
+}
+
+.empresa-body{
+  padding-top: 5vh; /* view height -> 5% da tela */
+  background-image: url(../assets/img/bckground.png);
+  background-size: auto;
+}
+
+/* formulário */
+
+#main-container1{
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #FFF;
+  border-radius: 10px;
+  padding: 25px;
+  height: 135vh;
+  margin-top: 10vh;
+}
+
+#main-container1 h1{
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.6rem; /* Adaptada a elemento root */
+}
+
+.botao-cadastro {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 30px;
+  color: #FFF;
+  background-color: #00C2CB;
+  cursor: pointer;
+}
+
+.botao-cadastro:hover{
+  background-color: #545454;
+  color: #fff;
+  transition: .5s;
+}
+
+form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.full-box{
+  flex: 1 1 100%;
+  position: relative;
+}
+
+.half-box{
+  flex: 1 1 45%;
+  position: relative;
+}
+
+.spacing{
+  margin-right: 2.5%;
+}
+
+label{
+  font-weight: bold;
+  font-size: .8rem;
+}
+
+input{
+
+  padding: 10px;
+  font-size: .9rem;
+  margin-bottom: 40px;
+}
+
+input:focus{
+  border-color: #00C2CB;
+}
+
+input [type = "button"]{
   background-color: #00C2CB;
   color: #FFF;
   border: none;
