@@ -28,32 +28,32 @@
         <form id="register-form">
             <div class="full-box">
                 <label for="razao">Razão:</label>
-                <input type="text" name="razao" id="razao" placeholder="Razão da empresa">
+                <input type="text" name="razao" id="id_razao" placeholder="Razão da empresa">
             </div>
             <div class="full-box">
                 <label for="cnpj">CNPJ:</label>
-                <input type="text" name="cnpj" id="cnpj" placeholder="CNPJ da empresa">
+                <input type="text" name="cnpj" id="id_cnpj" placeholder="CNPJ da empresa">
             </div>
             <div class="half-box spacing">
                 <label for="cep">CEP:</label>
-                <input type="text" name="cep" id="cep" placeholder="CEP da empresa" onkeyup="pesquisacep(this.value)">
+                <input type="text" name="cep" id="id_cep" placeholder="CEP da empresa" onkeyup="pesquisacep(this.value)">
             </div>
             <div class="half-box spacing">
                 <label for="numero">Nº:</label>
-                <input type="text" name="numero" id="numero" placeholder="Digite o número">
+                <input type="text" name="numero" id="id_numero" placeholder="Digite o número">
             </div>
             <div class="half-box spacing">
-                <input type="text" name="logradouro" id="logradouro" placeholder="Logradouro">
+                <input type="text" name="logradouro" id="id_logradouro" placeholder="Logradouro">
             </div>
            
             <div class="half-box spacing">
-                <input type="text" name="bairro" id="bairro" placeholder="Bairro">
+                <input type="text" name="bairro" id="id_bairro" placeholder="Bairro">
             </div>
             <div class="half-box spacing">
-                <input type="text" name="cidade" id="cidade" placeholder="Cidade">
+                <input type="text" name="cidade" id="id_cidade" placeholder="Cidade">
             </div>
             <div class="half-box spacing">
-                <input type="text" name="estado" id="estado" placeholder="Estado">
+                <input type="text" name="estado" id="id_estado" placeholder="Estado">
             </div>
             <div class="half-box spacing">
                 <label for="complemento">Complemento:</label>
@@ -63,7 +63,7 @@
                 <input type="checkbox" name="agreement" id="agreement">
                 <label for="agreement" id="agreement-label">Eu li e aceito os<a href="#"> termos de uso</a></label>
                 <div class="full-box">
-                    <input type="button" class="botao-cadastro" onclick="continuar()" id="btn-submit" value="Cadastrar">
+                    <input type="button" class="botao-cadastro" onclick="cadastrarEmpresa()" id="btn-submit" value="Cadastrar">
                 </div>
             </div>
         </form>
@@ -78,25 +78,109 @@
 </body>
 </html>
 <script>
-    function continuar() {
-        window.location = "login.html"
+      function continuar() {
+          console.log("executei a continuar1")
+          window.location = "cadastro.html"
+          console.log ("executei a continuar2")
+        }
+
+
+        function cadastrarEmpresa(){ 
+console.log ("passei na cadastrar empresa")
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var razao = id_razao.value;
+        var cnpj = id_cnpj.value;
+        var logradouro = id_logradouro.value;
+        var numero = id_numero.value;
+        var bairro = id_bairro.value;
+        var cep = id_cep.value;
+        var cidade = id_cidade.value;
+        var estado = id_estado.value;
+
+        // if (razao == "" || cnpj == "" || cep == "" || numero == "" || logradouro == "") {
+        //     cardErro.style.display = "block"
+        //     mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+        //     finalizarAguardar();
+        //     return false;
+        // }
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
+
+        // Enviando o valor da nova input
+        fetch("/empresa/cadastrarEmpresa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/empresa.js
+                razaoServer: razao,
+                cnpjServer: cnpj,
+                logradouroServer: logradouro,
+                numeroServer: numero,
+                bairroServer: bairro,
+                cepServer: cep,
+                cidadeServer: cidade,
+                estadoServer: estado
+
+            })
+
+
+        // }).then(function (resposta) {
+
+        //     console.log("resposta: ", resposta);
+
+        //     // if (resposta.ok) {
+        //     //     cardErro.style.display = "block";
+
+        //     //     mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+        //     //     setTimeout(() => {
+        //     //         window.location = "login.html";
+        //     //     }, "2000")
+                
+        //     //     limparFormulario();
+        //     //     finalizarAguardar();
+        //     // } else {
+        //     //     throw ("Houve um erro ao tentar realizar o cadastro!");
+        //     // }
+        }).catch(function (resposta) {
+            console.log(`passei no fetch`);
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+        console.log(`Saí do fetch`);
+        return false;
+
+        continuar() 
+        console.log("passei da continuar")
+        
     }
+
+    // function sumirMensagem() {
+    //     cardErro.style.display = "none"
+    // }
+    
 
     function limpa_formulário_cep() {
             //Limpa valores do formulário de cep.
-            document.getElementById('logradouro').value=("");
-            document.getElementById('bairro').value=("");
-            document.getElementById('cidade').value=("");
-            document.getElementById('estado').value=("");
+            document.getElementById('id_logradouro').value=("");
+            document.getElementById('id_bairro').value=("");
+            document.getElementById('id_cidade').value=("");
+            document.getElementById('id_estado').value=("");
     }
 
     function meu_callback(conteudo) {
         if (!("erro" in conteudo)) {
             //Atualiza os campos com os valores.
-            document.getElementById('logradouro').value=(conteudo.logradouro);
-            document.getElementById('bairro').value=(conteudo.bairro);
-            document.getElementById('cidade').value=(conteudo.localidade);
-            document.getElementById('estado').value=(conteudo.uf);
+            document.getElementById('id_logradouro').value=(conteudo.logradouro);
+            document.getElementById('id_bairro').value=(conteudo.bairro);
+            document.getElementById('id_cidade').value=(conteudo.localidade);
+            document.getElementById('id_estado').value=(conteudo.uf);
         } //end if.
         else {
             //CEP não Encontrado.
@@ -120,10 +204,10 @@ if (cep != "") {
     if(validacep.test(cep)) {
 
         //Preenche os campos com "..." enquanto consulta webservice.
-        document.getElementById('logradouro').value="...";
-        document.getElementById('bairro').value="...";
-        document.getElementById('cidade').value="...";
-        document.getElementById('estado').value="...";
+        document.getElementById('id_logradouro').value="...";
+        document.getElementById('id_bairro').value="...";
+        document.getElementById('id_cidade').value="...";
+        document.getElementById('id_estado').value="...";
 
         //Cria um elemento javascript.
         var script = document.createElement('script');
@@ -146,4 +230,7 @@ else {
     limpa_formulário_cep();
 }
 };
+
+
+
 </script>

@@ -2,76 +2,92 @@
 -- Você precisa executar os comandos no banco de dados para criar as tabelas,
 -- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
 /* para workbench - local - desenvolvimento */
-CREATE DATABASE TwoSense;
+CREATE DATABASE REC;
+USE REC;
+-- DROP DATABASE REC;
 
-USE TwoSense;
-
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50)
+CREATE TABLE Empresa (
+    idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+    razaoSocial VARCHAR(45) NOT NULL,
+    CNPJ CHAR(14) NOT NULL,
+    logradouro VARCHAR(45) NOT NULL,
+    numero INT NOT NULL,
+    bairro VARCHAR(45) NOT NULL,
+    cidade VARCHAR(45) NOT NULL,
+    estado CHAR(2) NOT NULL
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+CREATE TABLE Filial (
+    idFilial INT PRIMARY KEY AUTO_INCREMENT,
+    fkEmpresa INT,
+    FOREIGN KEY (fkEmpresa)
+        REFERENCES Empresa (idEmpresa),
+    nomeFilial VARCHAR(45) NOT NULL,
+    logradouroFilial VARCHAR(45) NOT NULL,
+    numeroFilial INT NOT NULL,
+    bairroFilial VARCHAR(45) NOT NULL,
+    cidadeFilial VARCHAR(45) NOT NULL,
+    estado VARCHAR(45) NOT NULL,
+    receita DECIMAL(8,1)
+)  AUTO_INCREMENT=10;
+
+CREATE TABLE Usuario (
+    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    fkFilial INT,
+    FOREIGN KEY (fkFilial)
+        REFERENCES Filial (idFilial),
+    nomeUsuario VARCHAR(45) NOT NULL,
+    emailUsuario VARCHAR(45) NOT NULL,
+    tipoLogin VARCHAR(45) NOT NULL
+)  AUTO_INCREMENT=100;
+
+CREATE TABLE Sala (
+    idSala INT PRIMARY KEY AUTO_INCREMENT,
+    fkFilial INT,
+    FOREIGN KEY (fkFilial)
+        REFERENCES Filial (idFilial),
+    numeroSala INT NOT NULL,
+    situacao VARCHAR(45) NOT NULL CHECK (situacao = 'disponivel'
+        OR situacao = 'indisponivel'
+        OR situacao = 'manutencao')
+)  AUTO_INCREMENT=500; 
+
+CREATE TABLE Totem (
+    idTotem INT PRIMARY KEY AUTO_INCREMENT,
+    fkFilial INT,
+    FOREIGN KEY (fkFilial)
+        REFERENCES Filial (idFilial),
+    modeloTotem VARCHAR(45) NOT NULL,
+    numeroSerial INT NOT NULL
+)  AUTO_INCREMENT=1000;
+
+CREATE TABLE Vendas (
+    idVenda INT PRIMARY KEY AUTO_INCREMENT,
+    fkTotem INT,
+    FOREIGN KEY (fkTotem)
+        REFERENCES Totem (idTotem),
+    tituloTransacao VARCHAR(45) NOT NULL,
+    valor DECIMAL(5 , 2 ) NOT NULL
+)  AUTO_INCREMENT=50;
+
+CREATE TABLE Leitura (
+    idLeitura INT PRIMARY KEY AUTO_INCREMENT,
+    fkTotem INT,
+    FOREIGN KEY (fkTotem)
+        REFERENCES Totem (idTotem),
+    cpuTotem INT NOT NULL,
+    memoriaTotem DECIMAL(2 , 1 ) NOT NULL,
+    discoTotem INT NOT NULL,
+    dataHora DATETIME NOT NULL
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300)
-);
+-- SELECT * FROM Empresa;
+-- SELECT * FROM Filial;
+-- SELECT * FROM Sala;
+-- SELECT * FROM Usuario;
+-- SELECT * FROM Totem;
+-- SELECT * FROM Leitura;
+-- SELECT * FROM Vendas;
 
-/* altere esta tabela de acordo com o que está em INSERT de sua API do arduino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
-);
-
-
-/* para sql server - remoto - produção */
-CREATE TABLE usuario (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-);
-
-CREATE TABLE aviso (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT FOREIGN KEY REFERENCES usuario(id)
-);
-
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY IDENTITY(1,1),
-	descricao VARCHAR(300)
-);
-
-/* altere esta tabela de acordo com o que está em INSERT de sua API do arduino */
-
-CREATE TABLE medida (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT FOREIGN KEY REFERENCES aquario(id)
-);
+INSERT INTO empresa VALUES 
+(NULL, 'Cinemark Brasil S.A.', '00779721002357','Avenida Doutor Chucri Zaida',920,'Vila Cordeiro','São Paulo','SP');
