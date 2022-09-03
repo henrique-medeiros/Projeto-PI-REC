@@ -12,7 +12,7 @@ def captura(conn):
       cursor = conn.cursor()
       print("Seja bem-vindo ao sistema de captura de dados do seu Hardware \U0001F604")
       print("Menu de Opções: \n - CPU \n - Memoria \n - HD \n - Todos")
-      desejo = bool(1)
+      
       componente = input("\U0001F916 Qual componente do seu sistema operacional você deseja monitorar?")
       tempo = int(input("\U0001F916 Em quantos segundos você deseja acompanhar?"))
       
@@ -24,7 +24,7 @@ def captura(conn):
       # processadoresLogicos = psutil.cpu_count()
       # frequencia =  psutil.cpu_freq(percpu=False)
       # cpu = psutil.cpu_times (percpu = False )
-
+      desejo = bool(1)
       if (componente == "CPU" or componente == "cpu"):
           print("\U0001F750 Iniciando captura de dados da CPU...", "\n--------")
           while(desejo == 1):
