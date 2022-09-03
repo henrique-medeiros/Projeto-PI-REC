@@ -1,6 +1,5 @@
 CREATE DATABASE REC;
 USE REC;
-DROP DATABASE REC;
 
 CREATE TABLE Empresa (
     idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -34,7 +33,7 @@ CREATE TABLE Usuario (
         REFERENCES Filial (idFilial),
     nomeUsuario VARCHAR(45) NOT NULL,
     emailUsuario VARCHAR(45) NOT NULL,
-    tipoLogin VARCHAR(45) NOT NULL
+    senhaUsuario VARCHAR(45) NOT NULL
 )  AUTO_INCREMENT=100;
 
 CREATE TABLE Sala (
@@ -87,5 +86,3 @@ SELECT * FROM Vendas;
 
 INSERT INTO empresa VALUES 
 (NULL, 'Cinemark Brasil S.A.', '00779721002357','Avenida Doutor Chucri Zaida',920,'Vila Cordeiro','São Paulo','SP');
-
-

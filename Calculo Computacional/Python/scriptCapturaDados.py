@@ -1,3 +1,9 @@
+# Eduardo Bengattini RA: 032210
+# Erika Mendes RA: 03221023
+# Gabriel Antonio RA: 03221012
+# Gustavo Golçalves RA: 03221046
+# Mariana Cabral RA: 03221061
+# Patrick Herold RA: 03221054
 
 import psutil
 import time
@@ -66,11 +72,19 @@ def captura(conn):
               "\n\U0001F4BB - Porcentagem de Utilização do Disco:", usoDisco,'%',
               "\n\U0001F4BB - Porcentagem de Utilização da Memoria:",psutil.virtual_memory().percent,'%',"\n\U0001F55B - Data e Hora:", dataHoraFormat,"\n--------")
               
-              cursor.execute("INSERT INTO Leitura (fkTotem, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s, %s, %s,%s);", (1000, porcentagem, memoria, usoDisco,dataHoraFormat))
-              cursor.execute("INSERT INTO Leitura (fkTotem, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s, %s, %s,%s);", (1001, porcentagem , memoria , usoDisco ,dataHoraFormat))
-              cursor.execute("INSERT INTO Leitura (fkTotem, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s, %s, %s,%s);", (1002, porcentagem , memoria, usoDisco,dataHoraFormat))
-              cursor.execute("INSERT INTO Leitura (fkTotem, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s, %s, %s,%s);", (1003, porcentagem , memoria, usoDisco ,dataHoraFormat))
+              CPU3 = porcentagem * 1.15
+              CPU2 = CPU3 - 0.05 
               
+              
+              M3 = memoria * 1.10
+              M2 = memoria * 1.15
+
+              D2 = usoDisco - 0.05
+              D3 = D2 * 3
+              cursor.execute("INSERT INTO Leitura (fkTotem, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s, %s, %s,%s);", (1000, porcentagem , memoria, usoDisco,dataHoraFormat))
+              cursor.execute("INSERT INTO Leitura (fkTotem, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s, %s, %s,%s);", (1001, CPU2 , M2 , D2 ,dataHoraFormat))
+              cursor.execute("INSERT INTO Leitura (fkTotem, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s, %s, %s,%s);", (1002, CPU3  , M3, D3 ,dataHoraFormat))
+                        
               conn.commit()
               time.sleep(tempo)
               desejo = 1        
