@@ -11533,7 +11533,7 @@ a:hover{
   padding: 20px 30px;
   border-radius: 10px;
   text-align: center;
-  margin-top: 10vh;
+  margin-top: 15vh;
   margin-bottom: 10vh;
   
 }
@@ -11674,12 +11674,13 @@ a{
 
 #main-container{
   width: 350px;
-  height: 80vh;
+  height: 45rem;
   margin-left: auto;
   margin-right: auto;
   background-color: #FFF;
   border-radius: 10px;
   padding: 25px;
+  padding-bottom: -15vh;
   height: 80h;
   margin-top: 10vh;
   margin-bottom: 10vh;
@@ -11929,7 +11930,7 @@ a{
   background-color: #FFF;
   border-radius: 10px;
   padding: 25px;
-  height: 135vh;
+  height: 52.5rem;
   margin-top: 10vh;
   margin-bottom: 10vh;
 }
