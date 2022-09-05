@@ -129,7 +129,7 @@ try:
     conn = mysql.connector.connect(
         host='localhost',
         user='root',
-        password='qwea1020',
+        password='SUA SENHA ROOT AQUI',
         database='REC'
     )
     print("Conexão com o Banco de Dados MySQL efetuada com sucesso.")
@@ -138,10 +138,13 @@ try:
     # Validações de Erro:
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-        print("Algo está errado com o username ou a senha")
+        print("Algo está errado com o Usuario do Banco ou a Senha.")
+        time.sleep(10)
     elif err.errno == errorcode.ER_BAD_DB_ERROR:
-        print("Banco de dados não existe")
+        print("Banco de dados não existe.")
+        time.sleep(10)
     else:
         print(err)
+        time.sleep(10)
 else:
     cursor = conn.cursor()
