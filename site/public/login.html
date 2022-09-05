@@ -54,7 +54,7 @@
                 </select>
             </div> -->
          
-            <input type="submit" value="Login">
+            <input type="button" class="botao-login" onclick="continuar()" id="btn-submit" value="Entrar">
         </form>
         <div id="social-container">
         <p>Ou entre por suas redes sociais</p>
@@ -90,6 +90,7 @@
 </html>
 
 <script>
+    
      function entrar() {
         // aguardar();
 
@@ -165,9 +166,16 @@
         })
 
         return false;
+        continuar()
     }
 
     function sumirMensagem() {
         cardErro.style.display = "none"
     }
+
+    function continuar() {
+          console.log("executei a continuar1")
+          window.location = "dashboard/index.html"
+          console.log ("executei a continuar2")
+        }
 </script>

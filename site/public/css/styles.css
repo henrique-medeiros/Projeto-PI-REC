@@ -11571,7 +11571,7 @@ input:focus{
   display: block;
 }
 
-input[type="submit"]{
+.botao-login {
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
@@ -11584,27 +11584,9 @@ input[type="submit"]{
   cursor: pointer;
 }
 
-input[type="submit"]:hover{
+.botao-login:hover{
   background-color: #545454;
-  transition: .5s;
-}
-
-input[type="submit2"]{
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
-  border: none;
-  height: 40px;
-  border-radius: 20px;
-  margin-top: 30px;
-  color: #FFF;
-  background-color: #545454;
-  cursor: pointer;
-}
-
-input[type="submit2"]:hover{
-  background-color: #fff;
-  color: #000;
+  color: #fff;
   transition: .5s;
 }
 
