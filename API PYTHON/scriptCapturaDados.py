@@ -15,6 +15,8 @@ import mysql.connector
 from mysql.connector import errorcode
 
 # Função captura de dados de maquina:
+
+
 def captura(conn):
 
     cursor = conn.cursor()
@@ -53,7 +55,6 @@ def captura(conn):
             dataHoraFormat = dataHora.strftime('%d/%m/%Y %H:%M:%S')
             print("\U0001F4BB - Porcentagem de Utilização do Disco:", usoDisco,
                   '%', "\n\U0001F55B - Data e Hora:", dataHoraFormat, "\n--------")
-            # "\nEspaço total:",usoDisco[0], "\nUsado:", usoDisco[1], "\nLivre:", usoDisco[2],
             time.sleep(tempo)
             desejo = 1
 
@@ -69,9 +70,7 @@ def captura(conn):
 
     if (componente == "TODOS" or componente == "todos" or componente == "Todos"):
         print("\U0001F750 Iniciando captura dos dados...", "\n--------")
-        # Executar o drop se a tabela Leitura existir no banco!!
-        # cursor.execute("DROP TABLE Leitura;")
-        cursor.execute("TRUNCATE Atm;")
+
         # ATM 1 (Maquina 1)
         if (sistema == "Windows"):
             cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s,%s);",
@@ -93,8 +92,6 @@ def captura(conn):
         elif (sistema == "Linux"):
             cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s,%s);",
                            (10, "Maquina 3", maquina, "Linux"))
-
-        cursor.execute("CREATE TABLE Leitura (idLeitura INT PRIMARY KEY AUTO_INCREMENT, fkAtm INT, FOREIGN KEY (fkAtm)REFERENCES Atm (idAtm), cpuTotem FLOAT NOT NULL, memoriaTotem FLOAT NOT NULL, discoTotem FLOAT NOT NULL, dataHora DATETIME NOT NULL);")
 
         while(desejo == 1):
             dataHora = datetime.now()
@@ -132,7 +129,7 @@ try:
     conn = mysql.connector.connect(
         host='localhost',
         user='root',
-        password='COLOQUE SUA SENHA ROOT AQUI',
+        password='qwea1020',
         database='REC'
     )
     print("Conexão com o Banco de Dados MySQL efetuada com sucesso.")
