@@ -11917,13 +11917,13 @@ a{
 .empresa-body{
   padding-top: 5vh; /* view height -> 5% da tela */
   background-image: url(../assets/img/bckground.png);
-  background-size: auto;
+  background-size: cover;
 }
 
 /* formulário */
 
 #main-container1{
-  width: 500px;
+  width: 350px;
   margin-left: auto;
   margin-right: auto;
   background-color: #FFF;
@@ -11931,6 +11931,7 @@ a{
   padding: 25px;
   height: 135vh;
   margin-top: 10vh;
+  margin-bottom: 10vh;
 }
 
 #main-container1 h1{
