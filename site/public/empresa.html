@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de empesa | REC.</title>
+    <title>Cadastro de filial | REC.</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -24,16 +24,13 @@
         </div>
     </nav>
     <div id="main-container1">
-        <h1>Cadastre sua empresa</h1>
+        <h1>Cadastre sua filial</h1>
         <form id="register-form">
             <div class="full-box">
-                <label for="razao">Razão:</label>
-                <input type="text" name="razao" id="id_razao" placeholder="Razão da empresa">
+                <label for="razao">Nome Fantasia:</label>
+                <input type="text" name="razao" id="id_nomeFan" placeholder="Nome Fantasia">
             </div>
-            <div class="full-box">
-                <label for="cnpj">CNPJ:</label>
-                <input type="text" name="cnpj" id="id_cnpj" placeholder="CNPJ da empresa">
-            </div>
+            
             <div class="half-box spacing">
                 <label for="cep">CEP:</label>
                 <input type="text" name="cep" id="id_cep" placeholder="CEP da empresa" onkeyup="pesquisacep(this.value)">
@@ -100,8 +97,7 @@
 console.log ("passei na cadastrar empresa")
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
-        var razao = id_razao.value;
-        var cnpj = id_cnpj.value;
+        var nomeFan = id_nomeFan.value;
         var logradouro = id_logradouro.value;
         var numero = id_numero.value;
         var bairro = id_bairro.value;
@@ -109,6 +105,7 @@ console.log ("passei na cadastrar empresa")
         var cidade = id_cidade.value;
         var estado = id_estado.value;
 
+        continuar() 
         // if (razao == "" || cnpj == "" || cep == "" || numero == "" || logradouro == "") {
         //     cardErro.style.display = "block"
         //     mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
@@ -129,16 +126,17 @@ console.log ("passei na cadastrar empresa")
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/empresa.js
-                razaoServer: razao,
-                cnpjServer: cnpj,
+                nomeFanServer: nomeFan,
                 logradouroServer: logradouro,
                 numeroServer: numero,
                 bairroServer: bairro,
-                cepServer: cep,
                 cidadeServer: cidade,
+                cepServer: cep,
                 estadoServer: estado
 
-            })
+                
+
+            }) 
 
 
         // }).then(function (resposta) {
@@ -167,7 +165,8 @@ console.log ("passei na cadastrar empresa")
         console.log(`Saí do fetch`);
         return false;
 
-        continuar() 
+
+       
         console.log("passei da continuar")
         
     }

@@ -26,7 +26,7 @@ function cadastrar(nomeUsuario, email, senha) {
     //  e na ordem de inserção dos dados.
     var instrucao = `
         INSERT INTO Usuario (nomeUsuario, emailUsuario, senhaUsuario) VALUES ('${nomeUsuario}', '${email}', '${senha}');
-    `;git 
+    `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
