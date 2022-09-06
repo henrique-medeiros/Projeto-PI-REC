@@ -7,10 +7,10 @@
 # Patrick Herold RA: 03221054
 
 # Importações de Bibliotecas:
-import psutil
+import psutil #
 import time
 from datetime import datetime
-import platform
+import platform #
 import mysql.connector
 from mysql.connector import errorcode
 
