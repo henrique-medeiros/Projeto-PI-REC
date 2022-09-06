@@ -4,39 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Totem | REC.</title>
+    <title>Cadastro de sala | REC.</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="totem-body">
+<body class="sala-body">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="index.html">REC.</a>
+            <a class="navbar-brand">REC.</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
                     <!-- <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li> -->
                     <!-- <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li> -->
                     <!-- <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li> -->
-                    <li class="nav-item"><a class="nav-link" href="index.html">Sair</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard/index.html">Voltar</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <div id="main-container2">
-        <h1>Cadastrar totem</h1>
+        <h1>Cadastrar sala</h1>
         <form id="register-form">
             <div class="full-box">
-                <label for="modelo">Modelo:</label>
-                <input type="text" name="modelo" id="modelo" placeholder="Modelo do totem">
+                <label for="filial">Filial:</label>
+                <input type="text" name="filial" id="filian" placeholder="Insira a filial">
             </div>
             <div class="half-box">
-                <label for="serial">Número serial:</label>
-                <input type="text" name="serial" id="serial" placeholder="Digite o número serial">
+                <label for="sala">Número da sala:</label>
+                <input type="text" name="sala" id="sala" placeholder="Número da sala">
             </div>
+            <div class="full-box">
+                <label for="name">Situação da sala:</label>
+                <select name="" id="">
+                <option value="" disabled selected>-Selecione uma opção-</option>
+                <option value="">Em manutenção</option>
+                <option value="">Disponível</option>
+                </select>
+         </div>
             <div class="full-box">
                 <input type="button" class="botao-cadastro" onclick="continuar()" id="btn-submit" value="Cadastrar">
             </div>
+          
         </form>
     </div>
     <p class="error-validation template"></p>

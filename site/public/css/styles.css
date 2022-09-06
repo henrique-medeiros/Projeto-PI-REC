@@ -11747,7 +11747,7 @@ input [type = "button"]{
   width: auto;
 }
 
-/* CADASTRO  DE TOTEM*/
+/* CADASTRO  DE SALA*/
 
 /* Geral cadastro */
 
@@ -11773,7 +11773,7 @@ a{
   color: #00C2CB;
 }
 
-.totem-body{
+.sala-body{
   padding-top: 5vh; /* view height -> 5% da tela */
   background-image: url(../assets/img/bckground.png);
   background-size: auto;
@@ -11788,7 +11788,7 @@ a{
   background-color: #FFF;
   border-radius: 10px;
   padding: 25px;
-  height: 60vh;
+  height: 70vh;
   margin-top: 10vh;
 }
 

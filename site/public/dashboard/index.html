@@ -17,20 +17,20 @@
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
     <title>Gráficos | REC.</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicon/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/favicon.jpg">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/favicon.jpg">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/favicon.jpg">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/favicon.jpg">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/favicon.jpg">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/favicon.jpg">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/favicon.jpg">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/favicon.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/favicon.jpg">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/favicon.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon.jpg">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon">
+    <!-- <link rel="manifest" href="assets/favicon/manifest.json"> -->
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -61,9 +61,9 @@
   <body>
     <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
       <div class="sidebar-brand d-none d-md-flex">
-        <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
-          <use xlink:href="assets/brand/coreui.svg#full"></use>
-        </svg>
+        <div class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+          <img src="assets/brand/favicon.png " alt="" style="height: 70" width="170">
+        </div>
         <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
           <use xlink:href="assets/brand/coreui.svg#signet"></use>
         </svg>
@@ -150,10 +150,7 @@
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use> -->
             </svg> Notificações</a>
           <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="notifications/alerts.html"><span class="nav-icon"></span> Alerts</a></li>
-            <li class="nav-item"><a class="nav-link" href="notifications/badge.html"><span class="nav-icon"></span> Badge</a></li>
-            <li class="nav-item"><a class="nav-link" href="notifications/modals.html"><span class="nav-icon"></span> Modals</a></li>
-            <li class="nav-item"><a class="nav-link" href="notifications/toasts.html"><span class="nav-icon"></span> Toasts</a></li>
+            <li class="nav-item"><a class="nav-link" href="notifications/alerts.html"><span class="nav-icon"></span> Alertas</a></li>
           </ul>
         </li>
         <!-- <li class="nav-item"><a class="nav-link" href="widgets.html">
@@ -161,21 +158,21 @@
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calculator"></use>
             </svg> Widgets<span class="badge badge-sm bg-info ms-auto">NEW</span></a></li>
         <li class="nav-divider"></li> -->
-        <!-- <li class="nav-title">Extras</li>
+        <li class="nav-title">Cadastro</li> 
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-star"></use>
-            </svg> Pages</a>
+            </svg> Opções</a>
           <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="login.html" target="_top">
+            <li class="nav-item"><a class="nav-link" href="../sala.html" target="_top">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                </svg> Login</a></li>
-            <li class="nav-item"><a class="nav-link" href="register.html" target="_top">
+                </svg> Cadastro de sala</a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="register.html" target="_top">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                </svg> Register</a></li>
-            <li class="nav-item"><a class="nav-link" href="404.html" target="_top">
+                </svg> Register</a></li> -->
+            <!-- <li class="nav-item"><a class="nav-link" href="404.html" target="_top">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bug"></use>
                 </svg> Error 404</a></li>
@@ -183,9 +180,9 @@
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bug"></use>
                 </svg> Error 500</a></li>
-          </ul>
+          </ul> -->
         </li>
-        <li class="nav-item mt-auto"><a class="nav-link" href="https://coreui.io/docs/templates/installation/" target="_blank">
+        <!-- <li class="nav-item mt-auto"><a class="nav-link" href="https://coreui.io/docs/templates/installation/" target="_blank">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-description"></use>
             </svg> Docs</a></li>
@@ -193,22 +190,28 @@
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
             </svg> Try CoreUI
-            <div class="fw-semibold">PRO</div>
+            <div class="fw-semibold">PRO</div> -->
           </a></li>
-      </ul> -->
-      <li class="nav-title">System Utilization</li>
+      </ul> 
+      <li class="nav-title">Utilização do sistema</li>
       <li class="nav-item px-3 d-narrow-none">
-        <div class="text-uppercase mb-1"><small><b>CPU Usage</b></small></div>
+        <div class="text-uppercase mb-1"><small><b>Uso da CPU</b></small></div>
         <div class="progress progress-thin">
         <div class="progress-bar bg-info-gradient" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-        </div><small class="text-medium-emphasis-inverse">348 Processes. 1/4 Cores.</small>
+        </div><small class="text-medium-emphasis-inverse">348 Processos. 1/4 Cores.</small>
         </li>
         <li class="nav-item px-3 d-narrow-none">
-          <div class="text-uppercase mb-1"><small><b>Memory Usage</b></small></div>
+          <div class="text-uppercase mb-1"><small><b> Uso da memória</b></small></div>
           <div class="progress progress-thin">
-          <div class="progress-bar bg-warning-gradient" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-          </div><small class="text-medium-emphasis-inverse">11444GB/16384MB</small>
+          <div class="progress-bar bg-warning-gradient" role="progressbar" style="width: 30%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+          </div><small class="text-medium-emphasis-inverse">16384MB/114GB</small>
           </li>
+          <li class="nav-item px-3 d-narrow-none">
+            <div class="text-uppercase mb-1"><small><b> Uso do disco</b></small></div>
+            <div class="progress progress-thin">
+            <div class="progress-bar bg-warning-gradient" role="progressbar" style="width: 55%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+            </div><small class="text-medium-emphasis-inverse">119GB/237GB</small>
+            </li>
           <!-- <li class="nav-item px-3 mb-3 d-narrow-none">
             <div class="text-uppercase mb-1"><small><b>SSD 1 Usage</b></small></div>
             <div class="progress progress-thin">
@@ -220,11 +223,11 @@
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
       <header class="header header-sticky mb-4">
         <div class="container-fluid">
-          <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+          <!-- <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
             <svg class="icon icon-lg">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
             </svg>
-          </button><a class="header-brand d-md-none" href="#">
+          </button><a class="header-brand d-md-none" href="#"> -->
             <svg width="118" height="46" alt="CoreUI Logo">
               <use xlink:href="assets/brand/coreui.svg#full"></use>
             </svg></a>
@@ -233,7 +236,7 @@
             <li class="nav-item"><a class="nav-link" href="#">Usuários</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Configurações</a></li>
           </ul> -->
-          <ul class="header-nav ms-auto">
+          <!-- <ul class="header-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#">
                 <svg class="icon icon-lg">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
@@ -246,7 +249,7 @@
                 <svg class="icon icon-lg">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                 </svg></a></li>
-          </ul>
+          </ul> -->
           <ul class="header-nav ms-3">
             <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/fernando.jfif" alt="user@email.com"></div>
@@ -275,7 +278,7 @@
                   </svg> Perfil</a><a class="dropdown-item" href="#">
                   <svg class="icon me-2">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-                  </svg> Configurações</a><a class="dropdown-item" href="#">
+                  </svg> Configurações</a><a href="#">
                   <!-- <svg class="icon me-2">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
                   </svg> Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a class="dropdown-item" href="#"> -->
@@ -284,11 +287,11 @@
                   </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="#"> -->
                   <!-- <svg class="icon me-2">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-                  </svg> Lock Account</a><a class="dropdown-item" href="#"> -->
-                  <svg class="icon me-2">
-                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                  </svg> Sair</a>
+                    <use xlink:href="../login.html">
+                  </svg> Sair</a><a class="dropdown-item" href="#"></use> -->
+                  <!-- <a class="icon me-2" href="../login.html">Sair</a> -->
+                  <ul class="icon me-2">
+                    <a class="nav-link" href="../login.html"></svg> Sair</a>
               </div>
             </li>
           </ul>
@@ -556,19 +559,19 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card mb-4">
-                <div class="card-header">Fluxo de clientes</div>
+                <div class="card-header">Fluxo de vendas</div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-6">
                       <!-- <div class="row"> -->
                         <div class="col-6">
-                          <div class="border-start border-start-4 border-start-info px-3 mb-3"><small class="text-medium-emphasis">Manhã</small>
+                          <div class="border-start border-start-4 border-start-info px-3 mb-3"><small class="text-medium-emphasis">Snack Bar</small>
                             <div class="fs-5 fw-semibold">9.123</div>
                           </div>
                         </div>
                         <!-- /.col-->
                         <div class="col-6">
-                          <div class="border-start border-start-4 border-start-danger px-3 mb-3"><small class="text-medium-emphasis">Tarde/Noite</small>
+                          <div class="border-start border-start-4 border-start-danger px-3 mb-3"><small class="text-medium-emphasis">Ingressos</small>
                             <div class="fs-5 fw-semibold">22.643</div>
                           </div>
                         </div>
@@ -774,7 +777,8 @@
                             </svg>
                           </th>
                           <th>Usuário</th>
-                          <th class="text-center">País</th>
+                          <th></th> 
+                          <!-- <th class="text-center">País</th> -->
         
                           <th>Uso</th>
                           <th></th> 
