@@ -45,9 +45,9 @@ CREATE TABLE Usuario (
 	fkLicenca INT,
     FOREIGN KEY (fklicenca)
 		REFERENCES Licenca (idLicenca),
-    nome VARCHAR(45) NOT NULL,
-    email VARCHAR(45) NOT NULL,
-    senha VARCHAR(45) NOT NULL
+    nomeUsuario VARCHAR(45) NOT NULL,
+    emailUsuario VARCHAR(45) NOT NULL,
+    senhaUsuario VARCHAR(45) NOT NULL
 )  AUTO_INCREMENT=100;
 
 CREATE TABLE Sala (
@@ -150,3 +150,7 @@ DESC Vendas;
 INSERT INTO Vendas
 	VALUES (NULL, 10, "bomboniere",5,500);
 SELECT * FROM Vendas;
+
+select * from filial;
+select * from usuario;
+
