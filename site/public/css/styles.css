@@ -11534,7 +11534,7 @@ a:hover{
   border-radius: 10px;
   text-align: center;
   margin-top: 15vh;
-  margin-bottom: 10vh;
+  margin-bottom: 9rem;
   
 }
 
@@ -11542,7 +11542,7 @@ a:hover{
 
 form{
   margin-top: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 label, input{
@@ -11593,14 +11593,15 @@ input:focus{
 /* redes sociais */
 
 #social-container, #social-container p{
-  margin-bottom: 15%;
+  margin-bottom: 0%;
+  position: relative;
 }
 
 #social-container i {
   height: 40px;
   width: 40px;
   border-radius: 50%;
-  line-height: 40px;
+  line-height: 50px;
   color: #FFF;
   margin: 0 5px;
   cursor: pointer;
@@ -11608,10 +11609,13 @@ input:focus{
 
 .fa-facebook-f{
   background-color: #3B5998;
+  position: absolute;
+  margin-left: auto;
 }
 
 .fa-linkedin{
   background-color: #0077B5;
+  
 }
 
 /* registrar */
@@ -11623,6 +11627,14 @@ input:focus{
 /* CADASTRO DE USUÁRIO */
 
 /* Geral cadastro */
+
+.cadastro-body{
+  padding-top: 5vh; /* view height -> 5% da tela */
+  background-image: url(../assets/img/bckground.png);
+  background-size: cover;
+}
+
+/* formulário */
 
 *{
   margin: 0;
@@ -11646,32 +11658,22 @@ a{
   color: #00C2CB;
 }
 
-.cadastro-body{
-  padding-top: 5vh; /* view height -> 5% da tela */
-  background-image: url(../assets/img/bckground.png);
-  background-size: cover;
-}
-
-/* formulário */
-
-#main-container{
+#main-container20{
   width: 350px;
-  height: 45rem;
   margin-left: auto;
   margin-right: auto;
   background-color: #FFF;
   border-radius: 10px;
   padding: 25px;
-  padding-bottom: -15vh;
-  height: 80h;
+  height: 53.5rem;
   margin-top: 10vh;
   margin-bottom: 10vh;
 }
 
-#main-container h1{
+#main-container20 h1{
   text-align: center;
   margin-bottom: 25px;
-  font-size: 1.6rem; /* Adaptada a elemento root */
+  font-size: 1.6rem;
 }
 
 .botao-cadastro {
@@ -11685,6 +11687,7 @@ a{
   color: #FFF;
   background-color: #00C2CB;
   cursor: pointer;
+  margin-bottom: 5rem;
 }
 
 .botao-cadastro:hover{
@@ -11747,6 +11750,10 @@ input [type = "button"]{
   width: auto;
 }
 
+.bg-light py-5{
+  min-width: 100%;
+}
+
 /* CADASTRO  DE SALA*/
 
 /* Geral cadastro */
@@ -11789,7 +11796,7 @@ a{
   border-radius: 10px;
   padding: 25px;
   height: 30rem;
-  margin-top: 10vh;
+  margin-top: 10rem;
   margin-bottom: 12rem;
 }
 
