@@ -1,6 +1,6 @@
 CREATE DATABASE REC;
 USE REC;
--- DROP DATABASE REC;
+DROP DATABASE REC;
 
 CREATE TABLE Empresa (
     idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -29,13 +29,11 @@ CREATE TABLE Filial (
     FOREIGN KEY (fkEmpresa)
         REFERENCES Empresa (idEmpresa),
     nomeFantasia VARCHAR(45) NOT NULL,
-    cep CHAR(8) NOT NULL,
     logradouro VARCHAR(45) NOT NULL,
     numero INT NOT NULL,
     bairro VARCHAR(45) NOT NULL,
     cidade VARCHAR(45) NOT NULL,
     estado CHAR(2) NOT NULL,
-    complemento VARCHAR(45),
     receita DECIMAL(8,1)
 )  AUTO_INCREMENT=10;
 
@@ -47,9 +45,9 @@ CREATE TABLE Usuario (
 	fkLicenca INT,
     FOREIGN KEY (fklicenca)
 		REFERENCES Licenca (idLicenca),
-    nomeUsuario VARCHAR(45) NOT NULL,
-    emailUsuario VARCHAR(45) NOT NULL,
-    senhaUsuario VARCHAR(45) NOT NULL
+    nome VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL,
+    senha VARCHAR(45) NOT NULL
 )  AUTO_INCREMENT=100;
 
 CREATE TABLE Sala (
@@ -71,7 +69,7 @@ CREATE TABLE Atm (
 	nome VARCHAR(45) NOT NULL,
     maquina VARCHAR(45) NOT NULL,
     sistemaOp VARCHAR(45) NOT NULL
-)  AUTO_INCREMENT=1000;
+);
 
 CREATE TABLE Vendas (
     idVenda INT PRIMARY KEY AUTO_INCREMENT,
@@ -84,19 +82,16 @@ CREATE TABLE Vendas (
     valor FLOAT NOT NULL
 )  AUTO_INCREMENT=50;
 
---  ******************************************************
---  * NÃO CRIAR A TABELA LEITURA, A API PYTHON VAI CRIAR *
---  ******************************************************
--- CREATE TABLE Leitura (
---    idLeitura INT PRIMARY KEY AUTO_INCREMENT,
---    fkAtm INT,
---    FOREIGN KEY (fkAtm)
---        REFERENCES Atm (idAtm),
---    cpuTotem FLOAT NOT NULL,
---   memoriaTotem FLOAT NOT NULL,
---    discoTotem FLOAT NOT NULL,
---    dataHora DATETIME NOT NULL
--- );
+CREATE TABLE Leitura (
+    idLeitura INT PRIMARY KEY AUTO_INCREMENT,
+    fkAtm INT,
+    FOREIGN KEY (fkAtm)
+        REFERENCES Atm (idAtm),
+    cpuTotem FLOAT NOT NULL,
+    memoriaTotem FLOAT NOT NULL,
+    discoTotem FLOAT NOT NULL,
+    dataHora DATETIME NOT NULL
+);
 
 -- Inserção e visualização de dados em tabelas
 
@@ -109,7 +104,7 @@ SELECT * FROM Empresa;
 -- Inserção feita pelo Usuario
 DESC Filial;
 INSERT INTO Filial 
-	VALUES (null, 1, 'Cinemark Tatuape','04140130', 'Endereço Teste', 100, 'Vila Lageado', 'São Paulo', 'SP', null, 8000000.0);
+	VALUES (NULL,1, 'Cinemark Tatuape', 'Endereço Teste', 100, 'Vila Lageado', 'São Paulo', 'SP',8000000.0);
 SELECT * FROM Filial;
 
 -- Inserção feita pelo Usuario
@@ -138,24 +133,18 @@ DESC Atm;
 -- VALUES ();
 -- INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (10, "nomeMaquina" , "maquina", "sistema");
 SELECT * FROM Atm;
-TRUNCATE Atm;
-
+-- DROP TABLE Leitura, Atm;
+USE REC;
 -- Inserção feita pela API REC (NÃO EXECUTAR O INSERT)
--- DESC Leitura;
+DESC Leitura;
 -- INSERT INTO Leitura
 -- VALUES ();
 -- INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (1000, 3232 , 323, 32131,'2022-10-21 10:06:23');
--- SELECT * FROM Leitura;
--- DROP TABLE Leitura;
--- TRUNCATE Leitura;
+SELECT * FROM Leitura;
+TRUNCATE Leitura;
 
 -- Inserção feita pela REC
 DESC Vendas;
 INSERT INTO Vendas
 	VALUES (NULL, 10, "bomboniere",5,500);
 SELECT * FROM Vendas;
-
-select * from filial;
-select * from usuario;
-
-

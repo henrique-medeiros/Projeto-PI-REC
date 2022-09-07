@@ -1,4 +1,4 @@
-# GRUPO 1 - PI - REC
+# GRUPO 1 - PI - REC.
 # Eduardo Bengattini RA: 03221008
 # Erika Mendes RA: 03221023
 # Gabriel Antonio RA: 03221012
@@ -15,7 +15,6 @@ import mysql.connector
 from mysql.connector import errorcode
 
 # Função captura de dados de maquina:
-
 
 def captura(conn):
 
@@ -123,13 +122,12 @@ def captura(conn):
             time.sleep(tempo)
             desejo = 1
 
-
 try:
     # Conexão com o banco de dados
     conn = mysql.connector.connect(
         host='localhost',
         user='root',
-        password='SUA SENHA ROOT AQUI',
+        password='SUA SENHA AQUI',
         database='REC'
     )
     print("Conexão com o Banco de Dados MySQL efetuada com sucesso.")
