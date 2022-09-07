@@ -1,6 +1,6 @@
 CREATE DATABASE REC;
 USE REC;
-DROP DATABASE REC;
+-- DROP DATABASE REC;
 
 CREATE TABLE Empresa (
     idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -10,7 +10,9 @@ CREATE TABLE Empresa (
     numero INT NOT NULL,
     bairro VARCHAR(45) NOT NULL,
     cidade VARCHAR(45) NOT NULL,
-    estado CHAR(2) NOT NULL
+    estado CHAR(2) NOT NULL,
+    cep CHAR (8) NOT NULL,
+    complemento VARCHAR(45)
 );
 
 CREATE TABLE Licenca (
@@ -34,7 +36,8 @@ CREATE TABLE Filial (
     bairro VARCHAR(45) NOT NULL,
     cidade VARCHAR(45) NOT NULL,
     estado CHAR(2) NOT NULL,
-    receita DECIMAL(8,1)
+    cep CHAR(8) NOT NULL,
+    receita FLOAT
 )  AUTO_INCREMENT=10;
 
 CREATE TABLE Usuario (
@@ -45,9 +48,9 @@ CREATE TABLE Usuario (
 	fkLicenca INT,
     FOREIGN KEY (fklicenca)
 		REFERENCES Licenca (idLicenca),
-    nome VARCHAR(45) NOT NULL,
-    email VARCHAR(45) NOT NULL,
-    senha VARCHAR(45) NOT NULL
+    nomeUsuario VARCHAR(45) NOT NULL,
+    emailUsuario VARCHAR(45) NOT NULL,
+    senhaUsuario VARCHAR(45) NOT NULL
 )  AUTO_INCREMENT=100;
 
 CREATE TABLE Sala (
@@ -59,7 +62,7 @@ CREATE TABLE Sala (
     situacao VARCHAR(45) NOT NULL CHECK (situacao = 'disponivel'
         OR situacao = 'indisponivel'
         OR situacao = 'manutencao')
-)  AUTO_INCREMENT=500; 
+)  AUTO_INCREMENT=1000; 
 
 CREATE TABLE Atm (
     idAtm INT PRIMARY KEY AUTO_INCREMENT,
