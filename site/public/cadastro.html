@@ -33,25 +33,25 @@
         <form id="register-form">
             <div class="full-box">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Digite seu email">
+                <input type="email" name="email" id="id_email" placeholder="Digite seu email">
             </div>
             <div class="full-box">
                 <label for="nome">Nome completo:</label>
-                <input type="text" name="nome" id="nome" placeholder="Digite o seu nome completo">
+                <input type="text" name="nome" id="id_nome" placeholder="Digite o seu nome completo">
             </div>
             <div class="full-box">
                 <label for="password">Senha</label>
-                <input type="password" name="password" id="password" placeholder="Digite a sua senha">
+                <input type="password" name="password" id="id_password" placeholder="Digite a sua senha">
             </div>
             <div class="half-box spacing">
                 <label for="passconfirmation">Confirmação de senha</label>
-                <input type="password" name="passconfirmation" id="passconfirmation" placeholder="Confirme a sua senha">
+                <input type="password" name="id_passconfirmation" id="id_passconfirmation" placeholder="Confirme a sua senha">
             <div class="half-box spacing">
-                    <label for="passconfirmation">Insira a identificação da Empesa</label>
-                    <input type="idEmpresa" name="idEmpresa" id="idEmpresa" placeholder="Insira a identificação da Empesa">
+                    <label for="passconfirmation">Insira a identificação da Filial</label>
+                    <input type="" name="idEmpresa" id="id_fkFilial" placeholder="Insira a identificação da filial">
                 <div class="full-box">
                     <label for="passconfirmation">Insira sua credencial</label>
-                    <input type="" name="Credencial" id="idCredencal" placeholder="Insira sua credencial">
+                    <input type="" name="Credencial" id="id_fkCredencial" placeholder="Insira sua credencial">
                 </div>
 
             <div class="full-box">
@@ -89,19 +89,26 @@
 </html>
 <script>
     function continuar() {
-        window.location = "empresa.html"
+        window.location = "login.html"
     }
     function cadastrar() {
         // aguardar();
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
-        var emailVar = email.value;
-        var nameVar = nome.value;
-        var senhaVar = password.value;
-        var confirmacaoSenhaVar = passconfirmation.value;
-    
-        console.log(nameVar)
+        var fkFilial = id_fkFilial.value;
+        var fkCredencial = id_fkCredencial.value; 
+        var emailVar = id_email.value;
+        var nome = id_nome.value;
+        var senhaVar = id_password.value;
+        var confirmacaoSenhaVar = id_passconfirmation.value;
+
+        console.log(fkFilial)
+        console.log(fkCredencial)
+
+        continuar()
+        
+        console.log(nome)
         // if (senhaVar != confirmacaoSenhaVar) {
         //     mensagem_erro.style.display = "block"
 
@@ -131,8 +138,10 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
+                fkFilialServer: fkFilial,
+                fkCredencialServer: fkCredencial, 
                 emailServer: emailVar,
-                nameServer: nameVar,
+                nomeServer: nome,
                 passwordServer: senhaVar
             })
         }).then(function (resposta) {
@@ -152,11 +161,14 @@
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
+        }
+        ).catch(function (resposta) {
+            //console.log(`#ERRO: ${resposta}`);
+            //finalizarAguardar();
         });
-
+console.log("antes do return")
+console.log(fkFilial)
+console.log(fkCredencial)
         return false;
     }
 

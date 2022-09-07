@@ -62,15 +62,23 @@ function entrar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.nameServer;
+    var fkFilial = req.body.fkFilialServer;
+    var fkCredencial = req.body.fkCredencialServer;
+    var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.passwordServer;
     
-    console.log("nome " + nome)
-    console.log("nome " + email)
-    console.log("nome " + senha)
+    console.log(nome)
+    console.log(email)
+    console.log(senha)
+    console.log(fkFilial)
+    console.log(fkCredencial)
     // Faça as validações dos valores
-    if (nome == undefined) {
+    if (fkFilial == undefined) {
+        res.status(400).send("Sua fkFilial está undefined!");
+    } else if (fkCredencial == undefined) {
+        res.status(400).send("Sua fkCredenciall está undefined!");
+    } else if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -79,7 +87,7 @@ function cadastrar(req, res) {
     } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha)
+        usuarioModel.cadastrar(fkFilial, fkCredencial, nome, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);

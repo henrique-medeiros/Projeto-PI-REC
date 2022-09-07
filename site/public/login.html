@@ -90,6 +90,11 @@
 </html>
 
 <script>
+     function continuar() {
+          console.log("executei a continuar1")
+          window.location = "dashboard/index.html"
+          console.log ("executei a continuar2")
+        }
     
      function entrar() {
         // aguardar();
@@ -110,8 +115,8 @@
         
         // COLOCAR ESSA VALIDAÇÃO NO CADASTRO
         if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+           // cardErro.style.display = "block"
+            alert("Ops, e-mail inválido! Verifique e tente novamente.");
             finalizarAguardar();
             return false;
         }
@@ -173,9 +178,4 @@
         cardErro.style.display = "none"
     }
 
-    function continuar() {
-          console.log("executei a continuar1")
-          window.location = "dashboard/index.html"
-          console.log ("executei a continuar2")
-        }
 </script>
