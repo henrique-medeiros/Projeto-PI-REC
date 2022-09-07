@@ -63,30 +63,31 @@ function testar(req, res) {
 
 function cadastrarEmpresa(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var razao = req.body.razaoServer;
-    var cnpj = req.body.cnpjServer;
-    var logradouro = req.body.logradouroServer;
-    var numero = req.body.numeroServer;
-    var bairro = req.body.bairroServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+    var nomeFan = req.body.nomeFanServer;
     var cep = req.body.cepServer;
+    var numero = req.body.numeroServer;
+    var logradouro = req.body.logradouroServer;
+    var bairro = req.body.bairroServer;
     var cidade = req.body.cidadeServer;
     var estado = req.body.estadoServer;
+    var complemento = req.body.complementoServer
 
 
     // Faça as validações dos valores
-    if (razao == undefined) {
-        res.status(400).send("Sua razão está undefined!");
-    } else if (cnpj == undefined) {
-        res.status(400).send("Seu cnpj está undefined!");
+    if (nomeFan == undefined) {
+        res.status(400).send("Seu nome está undefined!");
     } else if (cep == undefined) {
         res.status(400).send("Seu cep está undefined!");
     } else if (numero == undefined) {
         res.status(400).send("Seu numero está undefined!");
-    }
+    } else if (fkEmpresa == undefined) {
+        res.status(400).send("Sua identificação de empresa está undefined!");
+    } 
      else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        empresaModel.cadastrarEmpresa(razao, cnpj, logradouro, numero, bairro, cep, cidade, estado )
+        empresaModel.cadastrarEmpresa(fkEmpresa, nomeFan, cep, numero, logradouro, bairro, cidade, estado, complemento)
             .then(
                 function (resultado) {
                     res.json(resultado);

@@ -21,13 +21,13 @@ console.log ("passei na model")
 // }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrarEmpresa(nomeFan, logradouro, numero, bairro, cep, cidade, estado) {
-    console.log("ACESSEI O EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpresa():", nomeFan ,logradouro, numero, bairro, cep, cidade, estado );
+function cadastrarEmpresa(fkEmpresa, nomeFan, cep, numero, logradouro, bairro,  cidade, estado, complemento) {
+    console.log("ACESSEI O EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpresa():", fkEmpresa, nomeFan, cep, numero, logradouro, bairro,  cidade, estado, complemento);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO filial ( nomeFantasia,logradouro, numero, bairro, cidade, estado) VALUES ('${nomeFan}', '${logradouro}', '${numero}', '${bairro}','${cidade}','${estado}');
+        INSERT INTO filial (fkEmpresa, nomeFantasia, cep, numero, logradouro, bairro, cidade, estado, complemento) VALUES (${fkEmpresa}, '${nomeFan}', '${cep}', ${numero}, '${logradouro}', '${bairro}','${cidade}','${estado}', '${complemento}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

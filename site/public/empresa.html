@@ -54,8 +54,13 @@
             </div>
             <div class="half-box spacing">
                 <label for="complemento">Complemento:</label>
-                <input type="text" name="complemento" id="complemento" placeholder="Complemento">
+                <input type="text" name="complemento" id="id_complemento" placeholder="Complemento">
             </div>
+            <div class="full-box">
+                <label for="razao">Identificação:</label>
+                <input type="text" name="fkEmpresa" id="id_fkEmpresa" placeholder="Identifique a qual empresa a filial pertence">
+            </div>
+
             <div class="full-box">
                 <input type="checkbox" name="agreement" id="agreement">
                 <label for="agreement" id="agreement-label">Eu li e aceito os<a href="#"> termos de uso</a></label>
@@ -97,13 +102,15 @@
 console.log ("passei na cadastrar empresa")
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
+        var fkEmpresa = id_fkEmpresa.value;
         var nomeFan = id_nomeFan.value;
-        var logradouro = id_logradouro.value;
-        var numero = id_numero.value;
-        var bairro = id_bairro.value;
         var cep = id_cep.value;
+        var numero = id_numero.value;
+        var logradouro = id_logradouro.value;
+        var bairro = id_bairro.value;
         var cidade = id_cidade.value;
         var estado = id_estado.value;
+        var complemento = id_complemento.value;
 
         continuar() 
         // if (razao == "" || cnpj == "" || cep == "" || numero == "" || logradouro == "") {
@@ -126,15 +133,15 @@ console.log ("passei na cadastrar empresa")
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/empresa.js
+                fkEmpresaServer: fkEmpresa,
                 nomeFanServer: nomeFan,
-                logradouroServer: logradouro,
+                cepServer: cep,
                 numeroServer: numero,
+                logradouroServer: logradouro,
                 bairroServer: bairro,
                 cidadeServer: cidade,
-                cepServer: cep,
-                estadoServer: estado
-
-                
+                estadoServer: estado,
+                complementoServer: complemento
 
             }) 
 
