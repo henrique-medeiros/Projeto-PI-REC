@@ -29,11 +29,13 @@ CREATE TABLE Filial (
     FOREIGN KEY (fkEmpresa)
         REFERENCES Empresa (idEmpresa),
     nomeFantasia VARCHAR(45) NOT NULL,
+    cep CHAR(8) NOT NULL,
     logradouro VARCHAR(45) NOT NULL,
     numero INT NOT NULL,
     bairro VARCHAR(45) NOT NULL,
     cidade VARCHAR(45) NOT NULL,
     estado CHAR(2) NOT NULL,
+    complemento VARCHAR(45),
     receita DECIMAL(8,1)
 )  AUTO_INCREMENT=10;
 
@@ -82,17 +84,19 @@ CREATE TABLE Vendas (
     valor FLOAT NOT NULL
 )  AUTO_INCREMENT=50;
 
--- NÃO CRIAR A TABELA LEITURA, A API PYTHON VAI CRIAR
-CREATE TABLE Leitura (
-    idLeitura INT PRIMARY KEY AUTO_INCREMENT,
-    fkAtm INT,
-    FOREIGN KEY (fkAtm)
-        REFERENCES Atm (idAtm),
-    cpuTotem FLOAT NOT NULL,
-    memoriaTotem FLOAT NOT NULL,
-    discoTotem FLOAT NOT NULL,
-    dataHora DATETIME NOT NULL
-);
+--  ******************************************************
+--  * NÃO CRIAR A TABELA LEITURA, A API PYTHON VAI CRIAR *
+--  ******************************************************
+-- CREATE TABLE Leitura (
+--    idLeitura INT PRIMARY KEY AUTO_INCREMENT,
+--    fkAtm INT,
+--    FOREIGN KEY (fkAtm)
+--        REFERENCES Atm (idAtm),
+--    cpuTotem FLOAT NOT NULL,
+--   memoriaTotem FLOAT NOT NULL,
+--    discoTotem FLOAT NOT NULL,
+--    dataHora DATETIME NOT NULL
+-- );
 
 -- Inserção e visualização de dados em tabelas
 
@@ -105,7 +109,7 @@ SELECT * FROM Empresa;
 -- Inserção feita pelo Usuario
 DESC Filial;
 INSERT INTO Filial 
-	VALUES (NULL,1, 'Cinemark Tatuape', 'Endereço Teste', 100, 'Vila Lageado', 'São Paulo', 'SP',8000000.0);
+	VALUES (null, 1, 'Cinemark Tatuape','04140130', 'Endereço Teste', 100, 'Vila Lageado', 'São Paulo', 'SP', null, 8000000.0);
 SELECT * FROM Filial;
 
 -- Inserção feita pelo Usuario
@@ -137,13 +141,13 @@ SELECT * FROM Atm;
 TRUNCATE Atm;
 
 -- Inserção feita pela API REC (NÃO EXECUTAR O INSERT)
-DESC Leitura;
+-- DESC Leitura;
 -- INSERT INTO Leitura
 -- VALUES ();
 -- INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (1000, 3232 , 323, 32131,'2022-10-21 10:06:23');
-SELECT * FROM Leitura;
-DROP TABLE Leitura;
-TRUNCATE Leitura;
+-- SELECT * FROM Leitura;
+-- DROP TABLE Leitura;
+-- TRUNCATE Leitura;
 
 -- Inserção feita pela REC
 DESC Vendas;
@@ -153,4 +157,5 @@ SELECT * FROM Vendas;
 
 select * from filial;
 select * from usuario;
+
 
