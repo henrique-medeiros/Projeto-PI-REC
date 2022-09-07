@@ -11776,7 +11776,7 @@ a{
 .sala-body{
   padding-top: 5vh; /* view height -> 5% da tela */
   background-image: url(../assets/img/bckground.png);
-  background-size: auto;
+  background-size: cover;
 }
 
 /* formulário */
@@ -11788,8 +11788,9 @@ a{
   background-color: #FFF;
   border-radius: 10px;
   padding: 25px;
-  height: 70vh;
+  height: 30rem;
   margin-top: 10vh;
+  margin-bottom: 12rem;
 }
 
 #main-container2 h1{
