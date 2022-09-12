@@ -26,18 +26,13 @@ def captura(conn):
         "\U0001F916 Qual componente do seu sistema operacional você deseja monitorar?")
     tempo = int(input("\U0001F916 Em quantos segundos você deseja acompanhar?"))
 
-    meu_sistema = platform.uname()
-    porcentagem = psutil.cpu_percent(interval=None, percpu=False)
-    usoDisco = psutil.disk_usage('C:\\')[3]
-    sistema = meu_sistema.system
-    maquina = meu_sistema.machine
-    nomeMaquina = meu_sistema.node
-    memoria = psutil.virtual_memory().percent
+    
 
     desejo = bool(1)
     if (componente == "CPU" or componente == "cpu"):
         print("\U0001F750 Iniciando captura de dados da CPU...", "\n--------")
         while(desejo == 1):
+            porcentagem = psutil.cpu_percent(interval=None, percpu=False)
             dataHora = datetime.now()
             dataHoraFormat = dataHora.strftime('%d/%m/%Y %H:%M:%S')
 
@@ -50,6 +45,8 @@ def captura(conn):
     if (componente == "HD" or componente == "hd" or componente == "Hd"):
         print("\U0001F750 Iniciando captura de dados do Disco...", "\n--------")
         while(desejo == 1):
+            usoDisco = psutil.disk_usage('C:\\')[3]
+            porcentagem = psutil.cpu_percent(interval=None, percpu=False)
             dataHora = datetime.now()
             dataHoraFormat = dataHora.strftime('%d/%m/%Y %H:%M:%S')
             print("\U0001F4BB - Porcentagem de Utilização do Disco:", usoDisco,
@@ -60,6 +57,7 @@ def captura(conn):
     if (componente == "memoria" or componente == "MEMORIA" or componente == "Memoria"):
         print("Iniciando captura de dados da Memoria...\U0001F4AD", "\n--------")
         while(desejo == 1):
+            porcentagem = psutil.cpu_percent(interval=None, percpu=False)
             dataHora = datetime.now()
             dataHoraFormat = dataHora.strftime('%d/%m/%Y %H:%M:%S')
             print("\U0001F4BB - Porcentagem de Utilização da Memoria:", psutil.virtual_memory(
@@ -69,6 +67,10 @@ def captura(conn):
 
     if (componente == "TODOS" or componente == "todos" or componente == "Todos"):
         print("\U0001F750 Iniciando captura dos dados...", "\n--------")
+        meu_sistema = platform.uname()
+        sistema = meu_sistema.system
+        maquina = meu_sistema.machine
+        nomeMaquina = meu_sistema.node
 
         # ATM 1 (Maquina 1)
         if (sistema == "Windows"):
@@ -95,6 +97,9 @@ def captura(conn):
         while(desejo == 1):
             dataHora = datetime.now()
             dataHoraFormat = dataHora.strftime('%Y/%m/%d %H:%M:%S')
+            porcentagem = psutil.cpu_percent(interval=None, percpu=False)
+            usoDisco = psutil.disk_usage('C:\\')[3]
+            memoria = psutil.virtual_memory().percent
 
             print("\U0001F4BB - Porcentagem de Utilização da CPU: {:.1f}%".format(porcentagem),
                   "\n\U0001F4BB - Porcentagem de Utilização do Disco:", usoDisco, '%',
@@ -127,7 +132,7 @@ try:
     conn = mysql.connector.connect(
         host='localhost',
         user='root',
-        password='SUA SENHA AQUI',
+        password='qwea1020',
         database='REC'
     )
     print("Conexão com o Banco de Dados MySQL efetuada com sucesso.")
