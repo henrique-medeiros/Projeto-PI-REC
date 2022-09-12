@@ -26,8 +26,6 @@ def captura(conn):
         "\U0001F916 Qual componente do seu sistema operacional você deseja monitorar?")
     tempo = int(input("\U0001F916 Em quantos segundos você deseja acompanhar?"))
 
-    
-
     desejo = bool(1)
     if (componente == "CPU" or componente == "cpu"):
         print("\U0001F750 Iniciando captura de dados da CPU...", "\n--------")
