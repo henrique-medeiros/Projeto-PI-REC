@@ -41,7 +41,7 @@
             <input type="email" name="email" id="email" placeholder="Digite seu email" autocomplete="off">
            
             <label for="password">Senha</label>
-            <input type="password" name="password" id="password" placeholder="Digite a sua senha">
+            <input type="password" name="password" id="senha" placeholder="Digite a sua senha">
             <a href="#" id="forgot-pass">Esqueceu a senha?</a>
             <!--<br><br>-->
 
@@ -54,7 +54,7 @@
                 </select>
             </div> -->
          
-            <input type="button" class="botao-login" onclick="continuar()" id="btn-submit" value="Entrar">
+            <input type="button" class="botao-login" onclick=entrar() id="btn-submit" value="Entrar">
         
         </form>
         
@@ -91,21 +91,21 @@
 </html>
 
 <script>
-     function continuar() {
-          console.log("executei a continuar1")
-          window.location = "dashboard/index.html"
-          console.log ("executei a continuar2")
-        }
+    //  function continuar() {
+    //       console.log("executei a continuar1")
+    //       window.location = "dashboard/index.html"
+    //       console.log ("executei a continuar2")
+    //     }
     
      function entrar() {
         // aguardar();
 
-        var emailVar = in_email.value;
-        var senhaVar = in_senha.value;
+        var emailVar = email.value;
+        var senhaVar = senha.value;
 
         // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
+            //cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
             finalizarAguardar();
             return false;
@@ -152,7 +152,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "../dashboard/1D_albunsdash.html";
+                        window.location = "../dashboard/index.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -172,11 +172,12 @@
         })
 
         return false;
-        continuar()
+        // continuar()
+    
     }
 
     function sumirMensagem() {
-        cardErro.style.display = "none"
+        //cardErro.style.display = "none"
     }
 
 </script>
