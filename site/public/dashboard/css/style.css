@@ -14083,3 +14083,22 @@ html:not([dir=rtl]) .wrapper {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.graficos{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.linha1{
+  width: 48%;
+}
+
+.linha2{
+  width: 48%;
+}
+
+.pizza{
+  width: 48%;
+  
+}
