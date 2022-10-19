@@ -182,7 +182,7 @@
             <li class="nav-item"><a class="nav-link" href="../sala.html" target="_top">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                </svg> Cadastro de sala</a></li>
+                </svg> Cadastrar colaborador</a></li>
             <!-- <li class="nav-item"><a class="nav-link" href="register.html" target="_top">
                 <svg class="nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
@@ -326,49 +326,42 @@
       <div class="body flex-grow-1 px-3">
         <div class="container-lg">
           <div class="row">
+            
             <div class="col-sm-6 col-lg-3">
               <div class="card mb-4 text-white bg-primary">
                 <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                   <div>
-                    <div class="fs-4 fw-semibold">27% <span class="fs-6 fw-normal">(3.08 GHz
-                        <svg class="icon">
-                          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>
-                        </svg>)</span></div>
+                    <div class="fs-4 fw-semibold">Sistema Operacional</div>
+                    <div>Ubuntu (Linux)</div>
+                  </div>                  
+                </div>
+                <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+                  <canvas class="chart" id="" height="70"></canvas>
+                </div>
+              </div>
+            </div>
+            <!-- /.col-->
+            <div class="col-sm-6 col-lg-3">
+              <div class="card mb-4 text-white bg-danger">
+                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="fs-4 fw-semibold">27% <span class="fs-6 fw-normal">(3.08 GHz)</span></div>
                     <div>CPU</div>
-                  </div>
-                  <div class="dropdown">
-                    <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <svg class="icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
-                      </svg>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-                  </div>
+                  </div>                  
                 </div>
                 <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
                   <canvas class="chart" id="card-chart1" height="70"></canvas>
                 </div>
               </div>
             </div>
-            <!-- /.col-->
+
             <div class="col-sm-6 col-lg-3">
               <div class="card mb-4 text-white bg-info">
                 <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                   <div>
-                    <div class="fs-4 fw-semibold">5.9 GB <span class="fs-6 fw-normal">(75.9%
-                        <svg class="icon">
-                          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
-                        </svg>)</span></div>
+                    <div class="fs-4 fw-semibold">5.9 GB <span class="fs-6 fw-normal">(75.9%)</span></div>
                     <div>Memória</div>
-                  </div>
-                  <div class="dropdown">
-                    <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <svg class="icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
-                      </svg>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-                  </div>
+                  </div>                  
                 </div>
                 <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
                   <canvas class="chart" id="card-chart2" height="70"></canvas>
@@ -380,20 +373,9 @@
               <div class="card mb-4 text-white bg-warning">
                 <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                   <div>
-                    <div class="fs-4 fw-semibold">115GB <span class="fs-6 fw-normal">(90.7%
-                        <svg class="icon">
-                          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
-                        </svg>)</span></div>
+                    <div class="fs-4 fw-semibold">115GB <span class="fs-6 fw-normal">(90.7%)</span></div>
                     <div>Disco</div>
-                  </div>
-                  <div class="dropdown">
-                    <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <svg class="icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
-                      </svg>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-                  </div>
+                  </div>                  
                 </div>
                 <div class="c-chart-wrapper mt-3" style="height:70px;">
                   <canvas class="chart" id="card-chart3" height="70"></canvas>
@@ -401,30 +383,8 @@
               </div>
             </div>
             <!-- /.col-->
-            <div class="col-sm-6 col-lg-3">
-              <div class="card mb-4 text-white bg-danger">
-                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                  <div>
-                    <div class="fs-4 fw-semibold">Falha <span class="fs-6 fw-normal">(-23.6%
-                        <svg class="icon">
-                          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>
-                        </svg>)</span></div>
-                    <div>Totens</div>
-                  </div>
-                  <div class="dropdown">
-                    <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <svg class="icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-options"></use>
-                      </svg>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-                  </div>
-                </div>
-                <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-                  <canvas class="chart" id="card-chart4" height="70"></canvas>
-                </div>
-              </div>
-            </div>
+            
+            
             <!-- /.col-->
           </div>
           <!-- /.row-->
@@ -490,10 +450,12 @@
                           data: {
                             labels: ['14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'],
                             datasets: [{
-                              label: 'Desempenho da CPU',
-                              data: [60, 55, 40, 70, 80, 85, 20],
+                              label: 'Uso da CPU (%)',
+                              data: [60, 55, 85, 40, 98, 85, 20],
                               fill: false,
-                              borderColor: 'black',
+                              borderColor: 'grey',
+                              backgroundColor: ['yellow', 'yellow', 'orange', 'green', 'red', 'orange', 'green'],
+                              pointRadius: 8,
                               tension: 0.1
                             }]
                           },
@@ -512,8 +474,7 @@
                     <!-- End Line CHart -->
       
                   </div>
-                </div>
-                
+                </div>                
               </div>
 
               <div class="linha2">
@@ -530,10 +491,12 @@
                           data: {
                             labels: ['14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'],
                             datasets: [{
-                              label: 'Uso da memória',
-                              data: [65, 59, 80, 81, 56, 55, 40],
+                              label: 'Uso da RAM (%)',
+                              data: [65, 59, 80, 81, 56, 90, 60],
                               fill: false,
-                              borderColor: 'black',
+                              borderColor: 'grey',
+                              backgroundColor: ['yellow', 'green', 'orange', 'orange', 'green', 'red', 'yellow'],
+                              pointRadius: 8,
                               tension: 0.1
                             }]
                           },
@@ -552,35 +515,33 @@
                     <!-- End Line CHart -->
       
                   </div>
-                </div>
-  
+                </div>  
                 </div>
 
                 <div class="pizza">
                   <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Pie Chart</h5>
+                      <h5 class="card-title">Disco </h5>
         
                       <!-- Pie Chart -->
-                      <canvas id="pieChart" style="max-height: 400px;"></canvas>
+                      <canvas id="pieChart" style="max-height: 295px;"></canvas>
                       <script>
                         document.addEventListener("DOMContentLoaded", () => {
                           new Chart(document.querySelector('#pieChart'), {
                             type: 'pie',
                             data: {
                               labels: [
-                                'Red',
-                                'Blue',
-                                'Yellow'
+                                'Em uso (%)',
+                                'Disponível (%)',                                
                               ],
                               datasets: [{
                                 label: 'My First Dataset',
-                                data: [300, 50, 100],
+                                data: [70, 30],
                                 backgroundColor: [
-                                  'rgb(255, 99, 132)',
-                                  'rgb(54, 162, 235)',
-                                  'rgb(255, 205, 86)'
+                                  'dimgrey',
+                                  'MediumSpringGreen',                                  
                                 ],
+                                borderColor: 'darkgrey',
                                 hoverOffset: 4
                               }]
                             }
@@ -591,6 +552,48 @@
         
                     </div>
                   </div>
+                </div>
+
+                <div class="linha3">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">CPU</h5>
+        
+                      <!-- Line Chart -->
+                      <canvas id="lineChart3" style="max-height: 400px;"></canvas>
+                      <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                          new Chart(document.querySelector('#lineChart3'), {
+                            type: 'line',
+                            data: {
+                              labels: ['14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'],
+                              datasets: [{
+                                label: 'Temperatura da CPU (°C)',
+                                data: [65, 90, 95, 100, 95, 90, 65],
+                                fill: false,
+                                borderColor: 'grey',
+                                backgroundColor: ['green', 'yellow', 'orange', 'red', 'orange', 'yellow', 'green'],
+                                pointRadius: 8,
+                                tension: 0.1
+                              }]
+                            },
+                            options: {
+                              scales: {
+                                y: {
+                                  beginAtZero: true
+                                }
+                              }
+                            }
+                          });
+                        });
+                      </script>
+    
+                      
+                      <!-- End Line CHart -->
+        
+                    </div>
+                  </div>
+                  
                 </div>
             </div>
             

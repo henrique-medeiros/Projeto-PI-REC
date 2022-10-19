@@ -14098,7 +14098,15 @@ html:not([dir=rtl]) .wrapper {
   width: 48%;
 }
 
+.linha3{
+  width: 48%;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
 .pizza{
   width: 48%;
-  
+  margin-top: 25px;
+  margin-bottom: 10px;
+  height: 10%;
 }
