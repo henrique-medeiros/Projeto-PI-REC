@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de usuário | REC.</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="cadastro-body">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="../public/dashboard/index.html">REC.</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="../public/dashboard/index.html">Início</a></li>
+                   <!-- <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="main-container20">
+        <h1>Cadastre-se</h1>
+        <form id="register-form">
+            <div class="full-box">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="id_email" placeholder="Digite seu email">
+            </div>
+            <div class="full-box">
+                <label for="nome">Nome completo:</label>
+                <input type="text" name="nome" id="id_nome" placeholder="Digite o seu nome completo">
+            </div>
+            <div class="full-box">
+                <label for="password">Senha</label>
+                <input type="password" name="password" id="id_password" placeholder="Digite a sua senha">
+            </div>
+            <div class="half-box spacing">
+                <label for="passconfirmation">Confirmação de senha</label>
+                <input type="password" name="id_passconfirmation" id="id_passconfirmation" placeholder="Confirme a sua senha">
+            <div class="half-box spacing">
+                    <label for="passconfirmation">Insira a identificação da Filial</label>
+                    <input type="" name="idEmpresa" id="id_fkFilial" placeholder="Insira a identificação da filial">
+                <div class="full-box">
+                    <label for="passconfirmation">Insira sua credencial</label>
+                    <input type="" name="Credencial" id="id_fkCredencial" placeholder="Insira sua credencial">
+                </div>
+
+            <div class="full-box">
+                <input type="checkbox" name="agreement" id="agreement">
+                <label for="agreement" id="agreement-label">Eu li e aceito os<a href="#"> termos de uso</a></label>
+            </div>
+            
+            <div class="full-box">
+                <input type="button" class="botao-cadastro" onclick="cadastrar()" id="btn-submit" value="Cadastrar">
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+                     <!-- Footer-->
+                      <footer class="bg-light py-50">
+                        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - REC.</div></div>
+                    </footer>
+    
+    <p class="error-validation template"></p>
+
+    <script src="js/scripts.js"></script>
+
+     <!-- Bootstrap core JS-->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+     <!-- SimpleLightbox plugin JS-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+     <!-- Core theme JS-->
+     <script src="js/scripts.js"></script>
+     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+     <!-- * *                               SB Forms JS                               * *-->
+     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+</body>
+</html>
+<script>
+    // function continuar() {
+    //     window.location = "login.html"
+    // }
+    // function cadastrar() {
+    //     // aguardar();
+
+    //     //Recupere o valor da nova input pelo nome do id
+    //     // Agora vá para o método fetch logo abaixo
+    //     var fkFilial = id_fkFilial.value;
+    //     var fkCredencial = id_fkCredencial.value; 
+    //     var emailVar = id_email.value;
+    //     var nome = id_nome.value;
+    //     var senhaVar = id_password.value;
+    //     var confirmacaoSenhaVar = id_passconfirmation.value;
+
+    //     console.log(fkFilial)
+    //     console.log(fkCredencial)
+
+    //     continuar()
+        
+    //     console.log(nome)
+        // if (senhaVar != confirmacaoSenhaVar) {
+        //     mensagem_erro.style.display = "block"
+
+        //     finalizarAguardar();
+        //     return false;    
+        // } 
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
+
+        // if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+        //     mensagem_erro.style.display = "block"
+
+        //     finalizarAguardar();
+        //     return false;
+        // }
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
+
+        // Enviando o valor da nova input
+//         fetch("/usuarios/cadastrar", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify({
+//                 // crie um atributo que recebe o valor recuperado aqui
+//                 // Agora vá para o arquivo routes/usuario.js
+//                 fkFilialServer: fkFilial,
+//                 fkCredencialServer: fkCredencial, 
+//                 emailServer: emailVar,
+//                 nomeServer: nome,
+//                 passwordServer: senhaVar
+//             })
+//         }).then(function (resposta) {
+
+//             console.log("resposta: ", resposta);
+//             if (resposta.ok) {
+//                 cardErro.style.display = "block";
+
+//                 mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+//                 // setTimeout(() => {
+//                 //     window.location = "login.html";
+//                 // }, "2000")
+                
+//                 limparFormulario();
+//                 finalizarAguardar();
+//             } else {
+//                 throw ("Houve um erro ao tentar realizar o cadastro!");
+//             }
+//         }
+//         ).catch(function (resposta) {
+//             //console.log(`#ERRO: ${resposta}`);
+//             //finalizarAguardar();
+//         });
+// console.log("antes do return")
+// console.log(fkFilial)
+// console.log(fkCredencial)
+//         return false;
+//     }
+
+//     // function sumirMensagem() {
+//     //     cardErro.style.display = "none"
+//     // }
+
+</script>
