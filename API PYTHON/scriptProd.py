@@ -13,12 +13,15 @@ from datetime import datetime
 import platform #
 import mysql.connector
 from mysql.connector import errorcode
+import pyodbc
+import textwrap3
+
 
 # Função captura de dados de maquina:
 
-def captura(conn):
+def captura(cnxn):
 
-    cursor = conn.cursor()
+    cursor = cnxn.cursor()
     print("Seja bem-vindo ao sistema de captura de dados do seu Hardware \U0001F604")
     print("Menu de Opções: \n - CPU \n - Memoria \n - HD \n - Todos")
 
@@ -72,24 +75,24 @@ def captura(conn):
 
         # ATM 1 (Maquina 1)
         if (sistema == "Windows"):
-            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s,%s);",
+            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (?, ?, ?, ?);",
                            (10, nomeMaquina, maquina, sistema))
         elif (sistema == "Linux"):
-            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s,%s);",
+            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (?, ?, ?, ?);",
                            (10, nomeMaquina, maquina, sistema))
         # ATM 2 (Maquina 2)
         if (sistema == "Windows"):
-            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s,%s);",
+            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (?, ?, ?, ?);",
                            (10, "Maquina 2", "AMD32", "Linux"))
         elif (sistema == "Linux"):
-            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s,%s);",
+            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (?, ?, ?, ?);",
                            (10, "Maquina 2", "AMD32", "Windows"))
         # ATM 3 (Maquina 3)
         if (sistema == "Windows"):
-            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s,%s);",
+            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (?, ?, ?, ?);",
                            (10, "Maquina 3", maquina, "MacOS"))
         elif (sistema == "Linux"):
-            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s,%s);",
+            cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (?, ?, ?, ?);",
                            (10, "Maquina 3", maquina, "Linux"))
 
         while(desejo == 1):
@@ -114,27 +117,49 @@ def captura(conn):
             D2 = usoDisco - 0.05
             D3 = D2 * 3
 
-            cursor.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s, %s, %s,%s);",
+            cursor.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (?, ?, ?, ?, ?);",
                            (1, porcentagem, memoria, usoDisco, dataHoraFormat))
-            cursor.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s, %s, %s,%s);",
+            cursor.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (?, ?, ?, ?, ?);",
                            (2, CPU2, M2, D2, dataHoraFormat))
-            cursor.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s,%s, %s, %s,%s);",
+            cursor.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (?, ?, ?, ?, ?);",
                            (3, CPU3, M3, D3, dataHoraFormat))
 
-            conn.commit()
+            cnxn.commit()
             time.sleep(tempo)
             desejo = 1
 
 try:
     # Conexão com o banco de dados
-    conn = mysql.connector.connect(
-        host='localhost',
-        user='USUARIO',
-        password='SENHA',
-        database='REC'
-    )
-    print("Conexão com o Banco de Dados MySQL efetuada com sucesso.")
-    captura(conn)
+    driver= '{ODBC Driver 18 for SQL Server}'
+    server_name = 'projeto-rec'
+    database_name = 'REC'
+    server = '{server_name}.database.windows.net,1433'.format(server_name=server_name)
+    username = 'grupo09'
+    password = 'M@umau03221'
+
+    connection_string = textwrap3.dedent('''
+    Driver={driver};
+    Server={server};
+    Database={database};
+    Uid={username};
+    Pwd={password};
+    Encrypt=yes;
+    TrustedServerCertificate=no;
+    Connection Timeout=10;
+    '''.format(
+        driver=driver,
+        server=server,
+        database=database_name,
+        username=username,
+        password=password
+    ))
+    
+    cnxn:pyodbc.Connection = pyodbc.connect(connection_string)
+
+    global crsr
+    crsr = cnxn.cursor
+    print("Conexão com o Banco de Dados Azure efetuada com sucesso.")
+    captura(cnxn)
 
     # Validações de Erro:
 except mysql.connector.Error as err:
@@ -148,4 +173,4 @@ except mysql.connector.Error as err:
         print(err)
         time.sleep(10)
 else:
-    cursor = conn.cursor()
+    cursor = cnxn.cursor()
