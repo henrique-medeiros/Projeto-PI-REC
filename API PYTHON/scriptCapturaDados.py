@@ -43,7 +43,7 @@ def captura(conn):
     if (componente == "HD" or componente == "hd" or componente == "Hd"):
         print("\U0001F750 Iniciando captura de dados do Disco...", "\n--------")
         while(desejo == 1):
-            usoDisco = psutil.disk_usage('C:\\')[3]
+            usoDisco = psutil.disk_usage('/')[3]
             porcentagem = psutil.cpu_percent(interval=None, percpu=False)
             dataHora = datetime.now()
             dataHoraFormat = dataHora.strftime('%d/%m/%Y %H:%M:%S')
@@ -96,7 +96,7 @@ def captura(conn):
             dataHora = datetime.now()
             dataHoraFormat = dataHora.strftime('%Y/%m/%d %H:%M:%S')
             porcentagem = psutil.cpu_percent(interval=None, percpu=False)
-            usoDisco = psutil.disk_usage('C:\\')[3]
+            usoDisco = psutil.disk_usage('/')[3]
             memoria = psutil.virtual_memory().percent
 
             print("\U0001F4BB - Porcentagem de Utilização da CPU: {:.1f}%".format(porcentagem),
