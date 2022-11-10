@@ -50,7 +50,7 @@ print("Conexão com o Banco de Dados Azure efetuada com sucesso.")
 
 try:
     db_connection = mysql.connector.connect(
-        host='localhost', user='USUARIO', password='SENHA', database='REC')
+        host='localhost', user='aluno', password='sptech', database='REC')
 except mysql.connector.Error as error:
     if error.errno == errorcode.ER_BAD_DB_ERROR:
         print("Não encontrei o banco")
@@ -136,6 +136,30 @@ if (componente == "TODOS" or componente == "todos" or componente == "Todos"):
     elif (sistema == "Linux"):
         cursor.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (?, ?, ?, ?);",
                         (10, "Maquina 3", maquina, "Linux"))
+        
+    
+    if (sistema == "Windows"):
+        cursorLocal.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s, %s);",
+                        (10, nomeMaquina, maquina, sistema))
+    elif (sistema == "Linux"):
+        cursorLocal.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s, %s);",
+                        (10, nomeMaquina, maquina, sistema))
+    # ATM 2 (Maquina 2)
+    if (sistema == "Windows"):
+        cursorLocal.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s, %s);",
+                        (10, "Maquina 2", "AMD32", "Linux"))
+    elif (sistema == "Linux"):
+        cursorLocal.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s, %s);",
+                        (10, "Maquina 2", "AMD32", "Windows"))
+    # ATM 3 (Maquina 3)
+    if (sistema == "Windows"):
+        cursorLocal.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s, %s);",
+                        (10, "Maquina 3", maquina, "MacOS"))
+    elif (sistema == "Linux"):
+        cursorLocal.execute("INSERT INTO Atm (fkFilial, nome, maquina, sistemaOp) VALUES (%s, %s, %s, %s);",
+                        (10, "Maquina 3", maquina, "Linux"))
+        
+    
 
     while(desejo == 1):
         dataHora = datetime.now()
@@ -158,14 +182,24 @@ if (componente == "TODOS" or componente == "todos" or componente == "Todos"):
 
         D2 = usoDisco - 0.05
         D3 = D2 * 3
-
+    # Insert nuvem
         cursor.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (?, ?, ?, ?, ?);",
                         (1, porcentagem, memoria, usoDisco, dataHoraFormat))
         cursor.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (?, ?, ?, ?, ?);",
                         (2, CPU2, M2, D2, dataHoraFormat))
         cursor.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (?, ?, ?, ?, ?);",
                         (3, CPU3, M3, D3, dataHoraFormat))
+    
+    # Insert local
+        
+        cursorLocal.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s, %s, %s, %s, %s);",
+                        (1, porcentagem, memoria, usoDisco, dataHoraFormat))
+        cursorLocal.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s, %s, %s, %s, %s);",
+                        (2, CPU2, M2, D2, dataHoraFormat))
+        cursorLocal.execute("INSERT INTO Leitura (fkAtm, cpuTotem, memoriaTotem, discoTotem, dataHora) VALUES (%s, %s, %s, %s, %s);",
+                        (3, CPU3, M3, D3, dataHoraFormat))
 
+        db_connection.commit()
         cnxn.commit()
         time.sleep(tempo)
         desejo = 1
