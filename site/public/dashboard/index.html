@@ -418,6 +418,8 @@
 
           <!-- /.col-->
         </div>
+
+         
         <!-- /.row-->
         <div class="card mb-4">
           <div class="card-body">
@@ -467,6 +469,27 @@
             </div>
           </div>
         </div>
+
+        <!-- Alerta do percentual de uso da cpu -->
+        <div class="div_alerta" id="alerta_div">
+
+          <p class="texto_alerta" id="i_alerta">
+          </p>
+      </div>
+
+      <!-- Alerta do percentual de uso da memória -->
+      <div class="div_alerta" id="alerta_div1">
+
+        <p class="texto_alerta" id="i_alerta1">
+        </p>
+    </div>
+
+    <!-- Alerta do percentual de uso do disco-->
+    <div class="div_alerta" id="alerta_div2">
+
+      <p class="texto_alerta" id="i_alerta2">
+      </p>
+  </div>
 
         <div class="graficos">
           <div class="linha1">
@@ -568,7 +591,7 @@
                       dados.labels.push(registro.momento_grafico);
                       dados.datasets[0].data.push(registro.cpuTotem);
                       dados2.labels.push(registro.momento_grafico)
-                      dados2.datasets[0].data.push(registro.memoriaTotem)
+                      dados2.datasets[0].data.push(registro.memoriaTotem * 2)
                       dados3.labels.push(registro.momento_grafico)
                       dados3.datasets[0].data.push(registro.discoTotem)
                       // dados.datasets[1].data.push(registro.memoriaTotem);
@@ -687,6 +710,28 @@
                           dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
                           dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
                           dados.datasets[0].data.push(novoRegistro[0].cpu); 
+
+                          // alerta CPU
+
+                          if (novoRegistro[0].cpu>= 20 && novoRegistro[0].cpu< 94) {
+
+                          alerta_div.style.display = "block"
+                          alerta_div.style.backgroundColor = "yellow"
+                          alerta_div.style.borderColor = "yellow"
+                          i_alerta.innerHTML = "CPU em estado de emergência! Cuidado!"
+
+                          setTimeout(() => sumirMensagem(idAquario, cpuTotem), 2000);
+                          }
+
+                          if (novoRegistro[0].cpu >= 95 ) {
+
+                          alerta_div.style.display = "block"
+                          alerta_div.style.backgroundColor = "red"
+                          alerta_div.style.borderColor = "red"
+                          i_alerta.innerHTML = "CPU em estado crítico!"
+
+                          setTimeout(() => sumirMensagem(idAquario, cpuTotem), 2000);
+                          }
                         
 
                           dados2.labels.shift();  // apagar o primeiro de temperatura
@@ -694,10 +739,54 @@
                           dados2.datasets[0].data.shift();  // apagar o primeiro de temperatura
                           dados2.datasets[0].data.push(novoRegistro[0].memoria); 
 
+                           // alerta Memória
+
+                           if (novoRegistro[0].memoria>= 50 && novoRegistro[0].memoria< 85) {
+
+                          alerta_div1.style.display = "block"
+                          alerta_div1.style.backgroundColor = "yellow"
+                          alerta_div1.style.borderColor = "yellow"
+                          i_alerta1.innerHTML = "Memória em estado de emergência! Cuidado!"
+
+                          setTimeout(() => sumirMensagem(idAquario, memoriaTotem), 2000);
+                          }
+
+                          if (novoRegistro[0].memoria >= 86) {
+
+                          alerta_div1.style.display = "block"
+                          alerta_div1.style.backgroundColor = "red"
+                          alerta_div1.style.borderColor = "red"
+                          i_alerta1.innerHTML = "Memória em estado crítico!"
+
+                          setTimeout(() => sumirMensagem(idAquario, memoriaTotem), 2000);
+                          }
+
                           dados3.labels.shift();  // apagar o primeiro de temperatura
                           dados3.labels.push(novoRegistro[0].momento_grafico); // incluir uma nova medida de temperatura
                           dados3.datasets[0].data.shift();  // apagar o primeiro de temperatura
                           dados3.datasets[0].data.push(novoRegistro[0].disco); 
+
+                           // alerta disco
+
+                           if (novoRegistro[0].disco>= 5 && novoRegistro[0].disco< 240) {
+
+                          alerta_div2.style.display = "block"
+                          alerta_div2.style.backgroundColor = "yellow"
+                          alerta_div2.style.borderColor = "yellow"
+                          i_alerta2.innerHTML = "Disco em estado de emergência! Cuidado!"
+
+                          setTimeout(() => sumirMensagem(idAquario, discoTotem), 2000);
+                          }
+
+                          if (novoRegistro[0].disco >= 240) {
+
+                          alerta_div2.style.display = "block"
+                          alerta_div2.style.backgroundColor = "red"
+                          alerta_div2.style.borderColor = "red"
+                          i_alerta2.innerHTML = "Disco em estado crítico!"
+
+                          setTimeout(() => sumirMensagem(idAquario, discoTotem), 2000);
+                          }
 
                           window.grafico_linha.update();
                           window.grafico_linha2.update();
@@ -715,8 +804,11 @@
                         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                       });
 
+                    
+
                   }
 
+                
                  
                 </script>
 
@@ -836,10 +928,14 @@
                       }
                     });
                   });
+
+                  <!-- End Line CHart -->
+
+                  
                 </script>
 
 
-                <!-- End Line CHart -->
+                
 
               </div>
             </div>
