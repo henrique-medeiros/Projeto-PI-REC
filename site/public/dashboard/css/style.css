@@ -5329,6 +5329,7 @@ html:not([dir=rtl]) .page-item:last-child .page-link {
   background-color: var(--cui-alert-bg);
   border: var(--cui-alert-border);
   border-radius: var(--cui-alert-border-radius);
+
 }
 
 .alert-heading {
@@ -14109,4 +14110,8 @@ html:not([dir=rtl]) .wrapper {
   margin-top: 25px;
   margin-bottom: 10px;
   height: 10%;
+}
+
+#alerta_div{
+  display: none;
 }
