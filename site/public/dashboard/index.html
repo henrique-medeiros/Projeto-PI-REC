@@ -470,26 +470,26 @@
           </div>
         </div>
 
-        <!-- Alerta do percentual de uso da cpu -->
+        <!-- Alerta do percentual de uso da cpu
         <div class="alert alert-danger" id="alerta_div">
 
           <p class="texto_alerta" id="i_alerta">
           </p>
         </div>
 
-        <!-- Alerta do percentual de uso da memória -->
+        Alerta do percentual de uso da memória
         <div class="div_alerta" id="alerta_div1">
 
           <p class="texto_alerta" id="i_alerta1">
           </p>
         </div>
 
-        <!-- Alerta do percentual de uso do disco-->
-        <div class="div_alerta" id="alerta_div2">
+        Alerta do percentual de uso do disco-->
+        <!-- <div class="div_alerta" id="alerta_div2">
 
           <p class="texto_alerta" id="i_alerta2">
           </p>
-        </div>
+        </div> -->
 
         <div class="graficos">
           <div class="linha1">
@@ -509,6 +509,148 @@
                   // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
                   // verificar_autenticacao();
+
+
+
+                  function alertas(metrica, email, nome, empresa, componente, frase){
+
+                  const options = {
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjp7ImlkIjozMDIxODY3OTUsImVtYWlsIjoicmVjLmVudGVycHJpc2UyMDIyQGdtYWlsLmNvbSIsImFwcGxpY2F0aW9uIjozMDAyMTQzODZ9fQ.HRGN6TR0ZlwBHk2ufzl7uD2DMFOLtRJQiuDE-W_WX5OqWqsbhJ2pL9623MAQqBHeIUIb6dJK_U9toxCHuANOow',
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        query: `mutation {           createCard(input: {             pipe_id:302768084,            
+           title: "Card",             fields_attributes:[               {field_id: "nome_da_filial", field_value: "${empresa}"},{field_id: "nome_1", field_value: "${nome}"},{field_id: "email_1", field_value: "${email}"},{field_id: "qual_o_assunto_do_seu_pedido", field_value: " ${componente} está em ${metrica}%"}, {field_id: "mais_informa_es", field_value: "${frase}"}            ],           }) {               card {                 title               }             }           }`
+      })
+    };
+    fetch('https://api.pipefy.com/graphql', options)
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
+  }
+
+
+                     function verificar(metrica, componente) {
+
+                      var frase = ""
+
+                      var empresa = sessionStorage.FILIAL_USUARIO
+
+                      var nome =  sessionStorage.NOME_USUARIO
+
+                      var email = sessionStorage.EMAIL_USUARIO
+
+                     
+
+
+
+                      if(componente == "CPU"){
+
+                      if(metrica >=0.5){
+
+                        if ( metrica < 75) {
+
+                        alert(`Cuidado ${componente} está ficando no estado de Alerta!`);
+
+                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                        console.log('Cheguei aqui')
+
+                      
+
+                      } else if (metrica >= 76 && metrica <=85) {
+
+                        alert(`Cuidado ${componente} está ficando no estado de Emergencia!`);
+
+                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                      } else {
+
+                        alert(`Cuidado ${componente} está ficando no estado Critico!`);
+
+                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                      }
+
+                      alertas(metrica,email,nome,empresa,componente,frase)
+
+
+                        console.log("INICIANDO O FETCH");
+
+                      }
+
+                      } else if (componente == "RAM"){
+
+                      if(metrica >=70){
+
+                      if ( metrica < 79) {
+
+                      alert(`Cuidado, ${componente} está ficando no estado de Alerta!`);
+
+                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                        console.log('Cheguei aqui')
+
+                      } else if (metrica >= 80 && metrica <=89) {
+
+                        alert(`Cuidado ${componente} está ficando no estado de Emergencia!`);
+
+                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                      } else {
+
+                        alert(`Cuidado ${componente} está ficando no estado Critico!`);
+
+                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                      }
+
+                      alertas(metrica,email,nome,empresa,componente,frase)
+
+                      console.log("INICIANDO O FETCH");
+
+                      }
+
+                      }else if(componente == "DISCO"){
+
+                      if(metrica >=80){
+
+                      if ( metrica < 89) {
+
+                        alert(`Cuidado ${componente} está ficando no estado de Alerta!`);
+
+                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
+
+                        console.log('Cheguei aqui')
+
+                      
+
+                      } else if (metrica >= 90 && metrica <=94) {
+
+                        alert(`Cuidado ${componente} está ficando no estado de Emergencia!`);
+
+                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
+
+                      } else {
+
+                        alert(`Cuidado ${componente} está ficando no estado Critico!`);
+
+                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
+
+                      }
+
+                      alertas(metrica,email,nome,empresa,componente,frase)
+
+                      console.log("INICIANDO O FETCH");
+
+                      }
+
+                      }
+
+                      }
 
                   function obterDadosGrafico(idAquario) {
                     // alterarTitulo(idAquario)
@@ -711,29 +853,34 @@
                           dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
                           dados.datasets[0].data.push(novoRegistro[0].cpu);
 
+                          var cpu = novoRegistro[0].cpu
+                          verificar(cpu, "CPU")
+
+
+
                           // alerta CPU
 
-                          if (novoRegistro[0].cpu >= 20 && novoRegistro[0].cpu < 94) {
+                          // if (novoRegistro[0].cpu >= 20 && novoRegistro[0].cpu < 94) {
 
-                            alerta_div.style.display = "block"
-                            alerta_div.style.backgroundColor = "yellow"
-                            alerta_div.style.borderColor = "yellow"
-                            i_alerta.innerHTML = "CPU em estado de emergência! Cuidado!"
+                          //   alerta_div.style.display = "block"
+                          //   alerta_div.style.backgroundColor = "yellow"
+                          //   alerta_div.style.borderColor = "yellow"
+                          //   i_alerta.innerHTML = "CPU em estado de emergência! Cuidado!"
 
-                            setTimeout(() => sumirMensagem(idAquario, cpuTotem), 2000);
-                          }
+                          //   setTimeout(() => sumirMensagem(idAquario, cpuTotem), 2000);
+                          // }
 
-                          if (novoRegistro[0].cpu >= 0.5) {
+                          // if (novoRegistro[0].cpu >= 0.5) {
 
-                            alerta_div.style.display = "block"
-                            // alerta_div.style.backgroundColor = "red"
-                            // alerta_div.style.borderColor = "red"
-                            i_alerta.innerHTML = "CPU em estado crítico!"
+                          //   alerta_div.style.display = "block"
+                          //   // alerta_div.style.backgroundColor = "red"
+                          //   // alerta_div.style.borderColor = "red"
+                          //   i_alerta.innerHTML = "CPU em estado crítico!"
 
-                            setTimeout(() => sumirMensagem(idAquario, cpuTotem), 2000);
-                          }else{
-                            alerta_div.style.display = "none"
-                          }
+                          //   setTimeout(() => sumirMensagem(idAquario, cpuTotem), 2000);
+                          // }else{
+                          //   alerta_div.style.display = "none"
+                          // }
 
 
                           dados2.labels.shift();  // apagar o primeiro de temperatura
@@ -741,54 +888,62 @@
                           dados2.datasets[0].data.shift();  // apagar o primeiro de temperatura
                           dados2.datasets[0].data.push(novoRegistro[0].memoria);
 
-                          // alerta Memória
+                          var memoria = novoRegistro[0].memoria
+                          verificar(memoria, "RAM")
 
-                          if (novoRegistro[0].memoria >= 50 && novoRegistro[0].memoria < 85) {
 
-                            alerta_div1.style.display = "block"
-                            alerta_div1.style.backgroundColor = "yellow"
-                            alerta_div1.style.borderColor = "yellow"
-                            i_alerta1.innerHTML = "Memória em estado de emergência! Cuidado!"
 
-                            setTimeout(() => sumirMensagem(idAquario, memoriaTotem), 2000);
-                          }
+                          // // alerta Memória
 
-                          if (novoRegistro[0].memoria >= 86) {
+                          // if (novoRegistro[0].memoria >= 50 && novoRegistro[0].memoria < 85) {
 
-                            alerta_div1.style.display = "block"
-                            alerta_div1.style.backgroundColor = "red"
-                            alerta_div1.style.borderColor = "red"
-                            i_alerta1.innerHTML = "Memória em estado crítico!"
+                          //   alerta_div1.style.display = "block"
+                          //   alerta_div1.style.backgroundColor = "yellow"
+                          //   alerta_div1.style.borderColor = "yellow"
+                          //   i_alerta1.innerHTML = "Memória em estado de emergência! Cuidado!"
 
-                            setTimeout(() => sumirMensagem(idAquario, memoriaTotem), 2000);
-                          }
+                          //   setTimeout(() => sumirMensagem(idAquario, memoriaTotem), 2000);
+                          // }
+
+                          // if (novoRegistro[0].memoria >= 86) {
+
+                          //   alerta_div1.style.display = "block"
+                          //   alerta_div1.style.backgroundColor = "red"
+                          //   alerta_div1.style.borderColor = "red"
+                          //   i_alerta1.innerHTML = "Memória em estado crítico!"
+
+                          //   setTimeout(() => sumirMensagem(idAquario, memoriaTotem), 2000);
+                          // }
 
                           dados3.labels.shift();  // apagar o primeiro de temperatura
                           dados3.labels.push(novoRegistro[0].momento_grafico); // incluir uma nova medida de temperatura
                           dados3.datasets[0].data.shift();  // apagar o primeiro de temperatura
                           dados3.datasets[0].data.push(novoRegistro[0].disco);
 
-                          // alerta disco
+                          var disco = novoRegistro[0].disco
+                          verificar(disco, "DISCO")
 
-                          if (novoRegistro[0].disco >= 200 && novoRegistro[0].disco < 240) {
+                          // // alerta disco
 
-                            alerta_div2.style.display = "block"
-                            alerta_div2.style.backgroundColor = "yellow"
-                            alerta_div2.style.borderColor = "yellow"
-                            i_alerta2.innerHTML = "Disco em estado de emergência! Cuidado!"
+                          // if (novoRegistro[0].disco >= 200 && novoRegistro[0].disco < 240) {
 
-                            setTimeout(() => sumirMensagem(idAquario, discoTotem), 2000);
-                          }
+                          //   alerta_div2.style.display = "block"
+                          //   alerta_div2.style.backgroundColor = "yellow"
+                          //   alerta_div2.style.borderColor = "yellow"
+                          //   i_alerta2.innerHTML = "Disco em estado de emergência! Cuidado!"
 
-                          if (novoRegistro[0].disco >= 240) {
+                          //   setTimeout(() => sumirMensagem(idAquario, discoTotem), 2000);
+                          // }
 
-                            alerta_div2.style.display = "block"
-                            alerta_div2.style.backgroundColor = "red"
-                            alerta_div2.style.borderColor = "red"
-                            i_alerta2.innerHTML = "Disco em estado crítico!"
+                          // if (novoRegistro[0].disco >= 240) {
 
-                            setTimeout(() => sumirMensagem(idAquario, discoTotem), 2000);
-                          }
+                          //   alerta_div2.style.display = "block"
+                          //   alerta_div2.style.backgroundColor = "red"
+                          //   alerta_div2.style.borderColor = "red"
+                          //   i_alerta2.innerHTML = "Disco em estado crítico!"
+
+                          //   setTimeout(() => sumirMensagem(idAquario, discoTotem), 2000);
+                          // }
 
                           window.grafico_linha.update();
                           window.grafico_linha2.update();
