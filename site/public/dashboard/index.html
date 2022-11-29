@@ -512,7 +512,7 @@
 
 
 
-                  function alertas(metrica, email, nome, empresa, componente, frase){
+                  function alertas(metrica, email, nome, empresa, componente, frase, criticidade){
 
                   const options = {
       method: 'POST',
@@ -530,12 +530,47 @@
       .then(response => response.json())
       .then(response => console.log(response))
       .catch(err => console.error(err));
+
+
+      fetch("/usuarios/alertas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        componenteServer: componente,
+        metricaServer: metrica,
+        empresaServer: empresa,
+        criticidadeServer: criticidade,
+        
+      })
+    }).then(function (resposta) {
+      if (resposta.ok) {
+         
+          console.log(`Enviados para o banco com sucesso!`)
+
+      } else {
+       
+        console.log(`Falha ao enviar para o banco!`)
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
   }
+
+
+
 
 
                      function verificar(metrica, componente) {
 
                       var frase = ""
+
+                      var criticidade = ""
 
                       var empresa = sessionStorage.FILIAL_USUARIO
 
@@ -557,6 +592,8 @@
 
                         frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
 
+                        criticidade= "Alerta"
+
                         console.log('Cheguei aqui')
 
                       
@@ -567,15 +604,18 @@
 
                         frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
 
+                        criticidade = "Emergencial"
+
                       } else {
 
                         alert(`Cuidado ${componente} está ficando no estado Critico!`);
 
                         frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
 
+                        criticidade = "Critico"
                       }
 
-                      alertas(metrica,email,nome,empresa,componente,frase)
+                      alertas(metrica,email,nome,empresa,componente,frase,criticidade)
 
 
                         console.log("INICIANDO O FETCH");
@@ -588,9 +628,11 @@
 
                       if ( metrica < 79) {
 
-                      alert(`Cuidado, ${componente} está ficando no estado de Alerta!`);
+                        alert(`Cuidado, ${componente} está ficando no estado de Alerta!`);
 
                         frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                        criticidade = "Alerta"
 
                         console.log('Cheguei aqui')
 
@@ -600,15 +642,18 @@
 
                         frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
 
+                        criticidade = "Emergencial"
+
                       } else {
 
                         alert(`Cuidado ${componente} está ficando no estado Critico!`);
 
                         frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
 
+                        criticidade = "Critico"
                       }
 
-                      alertas(metrica,email,nome,empresa,componente,frase)
+                      alertas(metrica,email,nome,empresa,componente,frase,criticidade)
 
                       console.log("INICIANDO O FETCH");
 
@@ -624,6 +669,8 @@
 
                         frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
 
+                        criticidade = "Alerta"
+
                         console.log('Cheguei aqui')
 
                       
@@ -634,15 +681,19 @@
 
                         frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
 
+                        criticidade = "Emergencial"
+
                       } else {
 
                         alert(`Cuidado ${componente} está ficando no estado Critico!`);
 
                         frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
 
+                        criticidade = "Critico"
+
                       }
 
-                      alertas(metrica,email,nome,empresa,componente,frase)
+                      alertas(metrica,email,nome,empresa,componente,frase,criticidade)
 
                       console.log("INICIANDO O FETCH");
 
