@@ -502,6 +502,8 @@
 
                 <script>
 
+                  contador = 0
+
                   let proximaAtualizacao;
 
                   window.onload = obterDadosGrafico(1);
@@ -584,9 +586,11 @@
 
                       if(componente == "CPU"){
 
-                      if(metrica >=0.5){
+                        if(contador <= 3){
 
-                        if ( metrica < 75) {
+                      if(metrica >=41){
+
+                       if ( metrica <= 80) {
 
                         alert(`Cuidado ${componente} está ficando no estado de Alerta!`);
 
@@ -598,7 +602,7 @@
 
                       
 
-                      } else if (metrica >= 76 && metrica <=85) {
+                      } else if (metrica >= 81 && metrica <=94) {
 
                         alert(`Cuidado ${componente} está ficando no estado de Emergencia!`);
 
@@ -621,10 +625,15 @@
                         console.log("INICIANDO O FETCH");
 
                       }
+                      contador ++
+                    }
+
 
                       } else if (componente == "RAM"){
 
-                      if(metrica >=70){
+                        if(contador <= 3){
+
+                      if(metrica >=60){
 
                       if ( metrica < 79) {
 
@@ -636,7 +645,7 @@
 
                         console.log('Cheguei aqui')
 
-                      } else if (metrica >= 80 && metrica <=89) {
+                      } else if (metrica >= 80 && metrica <=99) {
 
                         alert(`Cuidado ${componente} está ficando no estado de Emergencia!`);
 
@@ -658,8 +667,14 @@
                       console.log("INICIANDO O FETCH");
 
                       }
+                     contador ++
+                    }
+
+                   
 
                       }else if(componente == "DISCO"){
+
+                        if(contador <= 3){
 
                       if(metrica >=80){
 
@@ -698,6 +713,11 @@
                       console.log("INICIANDO O FETCH");
 
                       }
+                      contador ++
+                    }
+
+
+                    
 
                       }
 
