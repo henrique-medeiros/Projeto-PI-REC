@@ -1254,35 +1254,6 @@
 
                 <!-- Line Chart -->
                 <canvas id="canvas_grafico2"></canvas>
-                <!-- <script>
-                  document.addEventListener("DOMContentLoaded", () => {
-                    new Chart(document.querySelector('#lineChart2'), {
-                      type: 'line',
-                      data: {
-                        labels: ['14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'],
-                        datasets: [{
-                          label: 'Uso da RAM (%)',
-                          data: [65, 59, 80, 81, 56, 90, 60],
-                          fill: false,
-                          borderColor: 'grey',
-                          backgroundColor: ['yellow', 'green', 'orange', 'orange', 'green', 'red', 'yellow'],
-                          pointRadius: 8,
-                          tension: 0.1
-                        }]
-                      },
-                      options: {
-                        scales: {
-                          y: {
-                            beginAtZero: true
-                          }
-                        }
-                      }
-                    });
-                  });
-                </script> -->
-
-
-                <!-- End Line CHart -->
 
               </div>
             </div>
@@ -1295,30 +1266,6 @@
 
                 <!-- Pie Chart -->
                 <canvas id="canvas_grafico3"></canvas>
-                <!-- <script>
-                  document.addEventListener("DOMContentLoaded", () => {
-                    new Chart(document.querySelector('#pieChart'), {
-                      type: 'pie',
-                      data: {
-                        labels: [
-                          'Em uso (%)',
-                          'Disponível (%)',
-                        ],
-                        datasets: [{
-                          label: 'My First Dataset',
-                          data: [70, 30],
-                          backgroundColor: [
-                            'dimgrey',
-                            'MediumSpringGreen',
-                          ],
-                          borderColor: 'darkgrey',
-                          hoverOffset: 4
-                        }]
-                      }
-                    });
-                  });
-                </script> -->
-                <!-- End Pie CHart -->
 
               </div>
             </div>
@@ -1356,23 +1303,57 @@
                       }
                     });
                   });
-
-                  <!-- End Line CHart -->
-
-
                 </script>
 
 
-
+                <!-- End Line CHart -->
 
               </div>
             </div>
 
           </div>
+
+          <div class="linha3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">CPU</h5>
+
+                <!-- Line Chart -->
+                <canvas id="canvas_graficoUso"></canvas>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="linha3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">CPU</h5>
+
+                <!-- Line Chart -->
+                <canvas id="canvas_graficoIDLE"></canvas>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="linha3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">CPU</h5>
+
+                <!-- Line Chart -->
+                <canvas id="canvas_graficoIO"></canvas>
+
+              </div>
+            </div>
+          </div>
+
+          
         </div>
 
       </div>
-
+   
     </div>
     <!-- /.row-->
 
