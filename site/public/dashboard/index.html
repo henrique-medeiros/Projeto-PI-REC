@@ -505,6 +505,8 @@
                   let proximaAtualizacao;
 
                   window.onload = obterDadosGrafico(1);
+                  window.onload = obterDadosGraficoCpu(1)
+
 
                   // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
@@ -727,7 +729,31 @@
                       });
                   }
 
-                  function plotarGrafico(resposta, idAquario) {
+                  function obterDadosGraficoCpu(idAtm) {
+                    // alterarTitulo(idAquario)
+                    
+                    if (proximaAtualizacao != undefined) {
+                      clearTimeout(proximaAtualizacao);
+                    }
+
+                    fetch(`/medidas/ultimas2/${idAtm}`, { cache: 'no-store' }).then(function (response) {
+                      if (response.ok) {
+                        response.json().then(function (resposta) {
+                          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                          resposta.reverse();
+
+                          plotarGrafico(resposta);
+                        });
+                      } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                      }
+                    })
+                      .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                      });
+                  }
+
+                  function plotarGrafico(resposta, idAquario, idAtm) {
                     console.log('iniciando plotagem do gráfico...');
 
                     var dados = {
@@ -743,7 +769,7 @@
                           fill: true,
                           data: []
                         }
-
+                        
                       ]
                     };
 
@@ -779,17 +805,74 @@
                       ]
                     };
 
+                    var dadosUso = {
+                      labels: [],
+                      datasets: [
+                        {
+                          yAxisID: 'yAxisCPU',
+                          xAxisID: 'xAxisCPU',
+                          label: 'Tempo de atividade da CPU(min)',
+                          borderColor: '#000814',
+                          backgroundColor: '#A020F0',
+                          pointRadius: 6,
+                          fill: true,
+                          data: []
+                        }
+                        
+                      ]
+                    };
+
+                    var dadosIdle = {
+                      labels: [],
+                      datasets: [
+                        {
+                          yAxisID: 'yAxisCPU',
+                          xAxisID: 'xAxisCPU',
+                          label: 'Tempo de inatividade da CPU(seg)',
+                          borderColor: '#000814',
+                          backgroundColor: '#ADFF2F',
+                          pointRadius: 6,
+                          fill: true,
+                          data: []
+                        }
+                        
+                      ]
+                    };
+
+                    var dadosIO = {
+                      labels: [],
+                      datasets: [
+                        {
+                          yAxisID: 'yAxisCPU',
+                          xAxisID: 'xAxisCPU',
+                          label: 'Tempo de I/O da CPU(seg)',
+                          borderColor: '#000814',
+                          backgroundColor: '#00BFFF',
+                          pointRadius: 6,
+                          fill: true,
+                          data: []
+                        }
+                        
+                      ]
+                    };
+
                     for (i = 0; i < resposta.length; i++) {
                       var registro = resposta[i];
                       dados.labels.push(registro.momento_grafico);
                       dados.datasets[0].data.push(registro.cpuTotem);
                       dados2.labels.push(registro.momento_grafico)
-                      dados2.datasets[0].data.push(registro.memoriaTotem * 2)
+                      dados2.datasets[0].data.push(registro.memoriaTotem)
                       dados3.labels.push(registro.momento_grafico)
                       dados3.datasets[0].data.push(registro.discoTotem)
-                      // dados.datasets[1].data.push(registro.memoriaTotem);
+                      
+                      dadosUso.labels.push(registro.momento)
+                      dadosUso.datasets[0].data.push(registro.cpuUso)
+                      dadosIdle.labels.push(registro.momento)
+                      dadosIdle.datasets[0].data.push(registro.cpuIdle)
+                      dadosIO.labels.push(registro.momento)
+                      dadosIO.datasets[0].data.push(registro.cpuIO)
+                      
                     }
-
 
 
                     console.log(JSON.stringify(dados));
@@ -886,10 +969,100 @@
                       }
                     })
 
-                    setTimeout(() => atualizarGrafico(idAquario, dados, dados2, dados3), 2000);
+                    window.grafico_linhaUso = new Chart(canvas_graficoUso, {
+                      type: 'line',
+                      data: dadosUso,
+                      options: {
+                        responsive: true,
+                        animation: { duration: 500 },
+                        hoverMode: 'index',
+                        stacked: false,
+                        title: {
+                          display: false,
+                          text: 'Dados capturados'
+                        },
+                        scales: {
+                          yAxes: [{
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            id: 'memoriaTotem',
+                            ticks: {
+                              beginAtZero: true,
+                              max: 100,
+                              min: 0
+                            }
+                          }, 
+                        
+                        ],
+                        }
+                      }
+                    })
+
+                    window.grafico_linhaIDLE = new Chart(canvas_graficoIDLE, {
+                      type: 'line',
+                      data: dadosIdle,
+                      options: {
+                        responsive: true,
+                        animation: { duration: 500 },
+                        hoverMode: 'index',
+                        stacked: false,
+                        title: {
+                          display: false,
+                          text: 'Dados capturados'
+                        },
+                        scales: {
+                          yAxes: [{
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            id: 'memoriaTotem',
+                            ticks: {
+                              beginAtZero: true,
+                              max: 100,
+                              min: 0
+                            }
+                          }, 
+                        
+                        ],
+                        }
+                      }
+                    })
+
+                    window.grafico_linhaIO = new Chart(canvas_graficoIO, {
+                      type: 'line',
+                      data: dadosIO,
+                      options: {
+                        responsive: true,
+                        animation: { duration: 500 },
+                        hoverMode: 'index',
+                        stacked: false,
+                        title: {
+                          display: false,
+                          text: 'Dados capturados'
+                        },
+                        scales: {
+                          yAxes: [{
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            id: 'memoriaTotem',
+                            ticks: {
+                              beginAtZero: true,
+                              max: 100,
+                              min: 0
+                            }
+                          }, 
+                        
+                        ],
+                        }
+                      }
+                    })
+
+                    setTimeout(() => atualizarGrafico(idAquario, idAtm, dados, dados2, dados3, dadosUso, dadosIdle, dadosIO), 2000);
                   }
 
-                  function atualizarGrafico(idAquario, dados, dados2, dados3) {
+                  function atualizarGrafico(idAquario, idAtm, dados, dados2, dados3, dadosUso, dadosIdle, dadosIO) {
 
                     fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
                       if (response.ok) {
@@ -898,11 +1071,12 @@
                           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                           console.log(`Dados atuais do gráfico: ${dados}`);
                           console.log(`Dados atuais do gráfico: ${dados2}`);
-
+                          
                           dados.labels.shift(); // apagar o primeiro
                           dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
                           dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                          dados.datasets[0].data.push(novoRegistro[0].cpu);
+                          dados.datasets[0].data.push(novoRegistro[0].cpu); 
+                        
 
                           var cpu = novoRegistro[0].cpu
                           verificar(cpu, "CPU")
@@ -937,7 +1111,7 @@
                           dados2.labels.shift();  // apagar o primeiro de temperatura
                           dados2.labels.push(novoRegistro[0].momento_grafico); // incluir uma nova medida de temperatura
                           dados2.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                          dados2.datasets[0].data.push(novoRegistro[0].memoria);
+                          dados2.datasets[0].data.push(novoRegistro[0].memoria); 
 
                           var memoria = novoRegistro[0].memoria
                           verificar(memoria, "RAM")
@@ -969,7 +1143,7 @@
                           dados3.labels.shift();  // apagar o primeiro de temperatura
                           dados3.labels.push(novoRegistro[0].momento_grafico); // incluir uma nova medida de temperatura
                           dados3.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                          dados3.datasets[0].data.push(novoRegistro[0].disco);
+                          dados3.datasets[0].data.push(novoRegistro[0].disco); 
 
                           var disco = novoRegistro[0].disco
                           verificar(disco, "DISCO")
@@ -999,15 +1173,61 @@
                           window.grafico_linha.update();
                           window.grafico_linha2.update();
                           window.grafico_linha3.update();
+                          window.grafico_linhaUso.update();
+                          window.grafico_linhaIDLE.update();
+                          window.grafico_linhaIO.update();
 
                           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                          proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, dados2, dados3), 2000);
+                          proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, idAtm, dados, dados2, dados3, dadosUso, dadosIdle, dadosIO), 2000);
                         });
                       } else {
                         console.error('Nenhum dado encontrado ou erro na API');
                         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
                       }
                     })
+                      .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                      });
+                      fetch(`/medidas/ultimas2/${idAtm}`, { cache: 'no-store' }).then(function (response) {
+                      if (response.ok) {
+                        response.json().then(function (novoRegistro) {
+
+                          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                          console.log(`Dados atuais do gráfico: ${dadosUso}`);
+                          console.log(`Dados atuais do gráfico: ${dadosIdle}`);
+                          console.log(`Dados atuais do gráfico: ${dadosIO}`);
+                          
+
+                          console.log("NOVO REGISTRO",novoRegistro);
+
+                          dadosUso.labels.shift();  // apagar o primeiro de temperatura
+                          dadosUso.labels.push(novoRegistro[0].momento); // incluir uma nova medida de temperatura
+                          dadosUso.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                          dadosUso.datasets[0].data.push(novoRegistro[0].uso); 
+
+                          dadosIdle.labels.shift();  // apagar o primeiro de temperatura
+                          dadosIdle.labels.push(novoRegistro[0].momento); // incluir uma nova medida de temperatura
+                          dadosIdle.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                          dadosIdle.datasets[0].data.push(novoRegistro[0].inativo); 
+
+                          dadosIO.labels.shift();  // apagar o primeiro de temperatura
+                          dadosIO.labels.push(novoRegistro[0].momento); // incluir uma nova medida de temperatura
+                          dadosIO.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                          dadosIO.datasets[0].data.push(novoRegistro[0].entrada); 
+
+                          window.grafico_linhaUso.update();
+                          window.grafico_linhaIDLE.update();
+                          window.grafico_linhaIO.update();
+
+
+                        }
+                        );
+                      } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                      }
+                    }
+                    )
                       .catch(function (error) {
                         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                       });
