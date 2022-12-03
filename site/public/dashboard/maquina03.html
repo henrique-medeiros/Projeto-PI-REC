@@ -45,6 +45,10 @@
   <link href="css/examples.css" rel="stylesheet">
   <!-- Global site tag (gtag.js) - Google Analytics-->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+
+  <script src=//cdn.jsdelivr.net/npm/sweetalert2@11></script>
+  <script src=https://cdn.jsdelivr.net/npm/sweetalert2@11></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -502,6 +506,8 @@
 
                 <script>
 
+                  contador = 0
+
                   let proximaAtualizacao;
 
                   window.onload = obterDadosGrafico(2);
@@ -514,196 +520,227 @@
 
 
 
-                  function alertas(metrica, email, nome, empresa, componente, frase, criticidade){
+                  function alertas(metrica, email, nome, empresa, componente, frase, criticidade) {
 
-                  const options = {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjp7ImlkIjozMDIxODY3OTUsImVtYWlsIjoicmVjLmVudGVycHJpc2UyMDIyQGdtYWlsLmNvbSIsImFwcGxpY2F0aW9uIjozMDAyMTQzODZ9fQ.HRGN6TR0ZlwBHk2ufzl7uD2DMFOLtRJQiuDE-W_WX5OqWqsbhJ2pL9623MAQqBHeIUIb6dJK_U9toxCHuANOow',
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        query: `mutation {           createCard(input: {             pipe_id:302768084,            
+                    const options = {
+                      method: 'POST',
+                      headers: {
+                        accept: 'application/json',
+                        Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyIjp7ImlkIjozMDIxODY3OTUsImVtYWlsIjoicmVjLmVudGVycHJpc2UyMDIyQGdtYWlsLmNvbSIsImFwcGxpY2F0aW9uIjozMDAyMTQzODZ9fQ.HRGN6TR0ZlwBHk2ufzl7uD2DMFOLtRJQiuDE-W_WX5OqWqsbhJ2pL9623MAQqBHeIUIb6dJK_U9toxCHuANOow',
+                        'content-type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                        query: `mutation {           createCard(input: {             pipe_id:302768084,            
            title: "Card",             fields_attributes:[               {field_id: "nome_da_filial", field_value: "${empresa}"},{field_id: "nome_1", field_value: "${nome}"},{field_id: "email_1", field_value: "${email}"},{field_id: "qual_o_assunto_do_seu_pedido", field_value: " ${componente} está em ${metrica}%"}, {field_id: "mais_informa_es", field_value: "${frase}"}            ],           }) {               card {                 title               }             }           }`
-      })
-    };
-    fetch('https://api.pipefy.com/graphql', options)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .catch(err => console.error(err));
+                      })
+                    };
+                    fetch('https://api.pipefy.com/graphql', options)
+                      .then(response => response.json())
+                      .then(response => console.log(response))
+                      .catch(err => console.error(err));
 
 
-      fetch("/usuarios/alertas", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        componenteServer: componente,
-        metricaServer: metrica,
-        empresaServer: empresa,
-        criticidadeServer: criticidade,
-        
-      })
-    }).then(function (resposta) {
-      if (resposta.ok) {
-         
-          console.log(`Enviados para o banco com sucesso!`)
+                    fetch("/usuarios/alertas", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json"
+                      },
+                      body: JSON.stringify({
+                        // crie um atributo que recebe o valor recuperado aqui
+                        // Agora vá para o arquivo routes/usuario.js
+                        componenteServer: componente,
+                        metricaServer: metrica,
+                        empresaServer: empresa,
+                        criticidadeServer: criticidade,
 
-      } else {
-       
-        console.log(`Falha ao enviar para o banco!`)
-      }
-    }).catch(function (resposta) {
-      console.log(`#ERRO: ${resposta}`);
-    });
+                      })
+                    }).then(function (resposta) {
+                      if (resposta.ok) {
 
-    return false;
-  }
-
-
-
-
-
-                     function verificar(metrica, componente) {
-
-                      var frase = ""
-
-                      var criticidade = ""
-
-                      var empresa = sessionStorage.FILIAL_USUARIO
-
-                      var nome =  sessionStorage.NOME_USUARIO
-
-                      var email = sessionStorage.EMAIL_USUARIO
-
-                     
-
-
-
-                      if(componente == "CPU"){
-
-                      if(metrica >=0.5){
-
-                        if ( metrica < 75) {
-
-                        alert(`Cuidado ${componente} está ficando no estado de Alerta!`);
-
-                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
-
-                        criticidade= "Alerta"
-
-                        console.log('Cheguei aqui')
-
-                      
-
-                      } else if (metrica >= 76 && metrica <=85) {
-
-                        alert(`Cuidado ${componente} está ficando no estado de Emergencia!`);
-
-                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
-
-                        criticidade = "Emergencial"
+                        console.log(`Enviados para o banco com sucesso!`)
 
                       } else {
 
-                        alert(`Cuidado ${componente} está ficando no estado Critico!`);
+                        console.log(`Falha ao enviar para o banco!`)
+                      }
+                    }).catch(function (resposta) {
+                      console.log(`#ERRO: ${resposta}`);
+                    });
 
-                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+                    return false;
+                  }
 
-                        criticidade = "Critico"
+
+
+
+
+                  function verificar(metrica, componente) {
+
+                    var frase = ""
+
+                    var criticidade = ""
+
+                    var empresa = sessionStorage.FILIAL_USUARIO
+
+                    var nome = sessionStorage.NOME_USUARIO
+
+                    var email = sessionStorage.EMAIL_USUARIO
+
+
+                    if (componente == "CPU") {
+                      if (contador <= 2) {
+                        if (metrica >= 41) {
+                          if (metrica < 80) {
+                            Swal.fire("Alerta", `Cuidado ${componente} está em estado de Alerta!`, "info")
+
+                            frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                            criticidade = "Alerta"
+
+                            console.log('Cheguei aqui')
+
+
+
+                          } else if (metrica >= 81 && metrica <= 94) {
+
+                            Swal.fire("Emergencia", `Cuidado ${componente} está em estado Emergencial!`, "warning")
+
+
+                            frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                            criticidade = "Emergencial"
+
+                          } else {
+
+                            Swal.fire("Crítico", `Cuidado ${componente} está em estado Crítico!`, "error")
+
+                            frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                            criticidade = "Critico"
+                          }
+
+                          alertas(metrica, email, nome, empresa, componente, frase, criticidade)
+
+
+                          console.log("INICIANDO O FETCH");
+
+                        }
+                        contador++
                       }
 
-                      alertas(metrica,email,nome,empresa,componente,frase,criticidade)
 
 
-                        console.log("INICIANDO O FETCH");
+                    } else if (componente == "RAM") {
 
+                      if (contador <= 2) {
+
+                        if (metrica >= 60) {
+
+                          if (metrica < 79) {
+
+
+                            setTimeout(() => {
+                              Swal.fire("Alerta", `Cuidado ${componente} está em estado de Alerta!`, "info");
+                            }, 5000)
+
+                            frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                            criticidade = "Alerta"
+
+                            console.log('Cheguei aqui')
+
+                          } else if (metrica >= 80 && metrica <= 99) {
+
+                            setTimeout(() => {
+                              Swal.fire("Emergencial", `Cuidado ${componente} está em estado Emergencial!`, "warning")
+                            }, 5000)
+
+                            frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                            criticidade = "Emergencial"
+
+                          } else {
+
+                            setTimeout(() => {
+                              Swal.fire("Crítico", `Cuidado ${componente} está em estado Crítico!`, "error")
+                            }, 5000)
+
+                            frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+
+                            criticidade = "Critico"
+                          }
+
+                          alertas(metrica, email, nome, empresa, componente, frase, criticidade)
+
+                          console.log("INICIANDO O FETCH");
+
+                        }
+                        contador++
                       }
 
-                      } else if (componente == "RAM"){
 
-                      if(metrica >=70){
 
-                      if ( metrica < 79) {
+                    } else if (componente == "DISCO") {
 
-                        alert(`Cuidado, ${componente} está ficando no estado de Alerta!`);
+                      if (contador <= 2) {
 
-                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+                        if (metrica >= 90) {
 
-                        criticidade = "Alerta"
+                          if (metrica < 100) {
 
-                        console.log('Cheguei aqui')
 
-                      } else if (metrica >= 80 && metrica <=89) {
+                            setTimeout(() => {
+                              Swal.fire("Alerta", `Cuidado ${componente} está em estado de Alerta!`, "info")
+                            }, 9000)
 
-                        alert(`Cuidado ${componente} está ficando no estado de Emergencia!`);
+                            frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
 
-                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+                            criticidade = "Alerta"
 
-                        criticidade = "Emergencial"
+                            console.log('Cheguei aqui')
 
-                      } else {
 
-                        alert(`Cuidado ${componente} está ficando no estado Critico!`);
 
-                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}%`
+                          } else if (metrica >= 90 && metrica <= 94) {
 
-                        criticidade = "Critico"
+                            setTimeout(() => {
+                              Swal.fire("Emergencial", `Cuidado ${componente} está em estado Emergencial!`, "warning")
+                            }, 9000)
+
+                            frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
+
+                            criticidade = "Emergencial"
+
+                          } else {
+
+                            setTimeout(() => {
+                              Swal.fire("Crítico", `Cuidado ${componente} está em estado Crítico!`, "error")
+                            }, 9000)
+
+                            frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
+
+                            criticidade = "Critico"
+
+                          }
+
+
+                          alertas(metrica, email, nome, empresa, componente, frase, criticidade)
+
+                          console.log("INICIANDO O FETCH");
+
+                        }
+                        contador++
                       }
 
-                      alertas(metrica,email,nome,empresa,componente,frase,criticidade)
 
-                      console.log("INICIANDO O FETCH");
+                    }
 
-                      }
+                  }
 
-                      }else if(componente == "DISCO"){
 
-                      if(metrica >=80){
 
-                      if ( metrica < 89) {
 
-                        alert(`Cuidado ${componente} está ficando no estado de Alerta!`);
 
-                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
-
-                        criticidade = "Alerta"
-
-                        console.log('Cheguei aqui')
-
-                      
-
-                      } else if (metrica >= 90 && metrica <=94) {
-
-                        alert(`Cuidado ${componente} está ficando no estado de Emergencia!`);
-
-                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
-
-                        criticidade = "Emergencial"
-
-                      } else {
-
-                        alert(`Cuidado ${componente} está ficando no estado Critico!`);
-
-                        frase = `O ${componente} do computador está ficando sobrecarregado! Porcentagem de Uso: ${metrica}GB`
-
-                        criticidade = "Critico"
-
-                      }
-
-                      alertas(metrica,email,nome,empresa,componente,frase,criticidade)
-
-                      console.log("INICIANDO O FETCH");
-
-                      }
-
-                      }
-
-                      }
 
                   function obterDadosGrafico(id) {
                     // alterarTitulo(idAquario)
@@ -770,7 +807,7 @@
                           fill: true,
                           data: []
                         }
-                        
+
                       ]
                     };
 
@@ -819,7 +856,7 @@
                           fill: true,
                           data: []
                         }
-                        
+
                       ]
                     };
 
@@ -836,7 +873,7 @@
                           fill: true,
                           data: []
                         }
-                        
+
                       ]
                     };
 
@@ -853,7 +890,7 @@
                           fill: true,
                           data: []
                         }
-                        
+
                       ]
                     };
 
@@ -865,14 +902,14 @@
                       dados2.datasets[0].data.push(registro.memoriaTotem)
                       dados3.labels.push(registro.momento_grafico)
                       dados3.datasets[0].data.push(registro.discoTotem)
-                      
+
                       dadosUso.labels.push(registro.momento)
                       dadosUso.datasets[0].data.push(registro.cpuUso)
                       dadosIdle.labels.push(registro.momento)
                       dadosIdle.datasets[0].data.push(registro.cpuIdle)
                       dadosIO.labels.push(registro.momento)
                       dadosIO.datasets[0].data.push(registro.cpuIO)
-                      
+
                     }
 
 
@@ -993,9 +1030,9 @@
                               max: 100,
                               min: 0
                             }
-                          }, 
-                        
-                        ],
+                          },
+
+                          ],
                         }
                       }
                     })
@@ -1023,9 +1060,9 @@
                               max: 100,
                               min: 0
                             }
-                          }, 
-                        
-                        ],
+                          },
+
+                          ],
                         }
                       }
                     })
@@ -1053,9 +1090,9 @@
                               max: 100,
                               min: 0
                             }
-                          }, 
-                        
-                        ],
+                          },
+
+                          ],
                         }
                       }
                     })
@@ -1072,13 +1109,13 @@
                           console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                           console.log(`Dados atuais do gráfico: ${dados}`);
                           console.log(`Dados atuais do gráfico: ${dados2}`);
-                          
+
 
                           dados.labels.shift(); // apagar o primeiro
                           dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
                           dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                          dados.datasets[0].data.push(novoRegistro[0].cpu); 
-                        
+                          dados.datasets[0].data.push(novoRegistro[0].cpu);
+
 
                           var cpu = novoRegistro[0].cpu
                           verificar(cpu, "CPU")
@@ -1113,7 +1150,7 @@
                           dados2.labels.shift();  // apagar o primeiro de temperatura
                           dados2.labels.push(novoRegistro[0].momento_grafico); // incluir uma nova medida de temperatura
                           dados2.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                          dados2.datasets[0].data.push(novoRegistro[0].memoria); 
+                          dados2.datasets[0].data.push(novoRegistro[0].memoria);
 
                           var memoria = novoRegistro[0].memoria
                           verificar(memoria, "RAM")
@@ -1145,7 +1182,7 @@
                           dados3.labels.shift();  // apagar o primeiro de temperatura
                           dados3.labels.push(novoRegistro[0].momento_grafico); // incluir uma nova medida de temperatura
                           dados3.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                          dados3.datasets[0].data.push(novoRegistro[0].disco); 
+                          dados3.datasets[0].data.push(novoRegistro[0].disco);
 
                           var disco = novoRegistro[0].disco
                           verificar(disco, "DISCO")
@@ -1190,7 +1227,7 @@
                       .catch(function (error) {
                         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                       });
-                      fetch(`/medidas/ultimas2/${idAtm}`, { cache: 'no-store' }).then(function (response) {
+                    fetch(`/medidas/ultimas2/${idAtm}`, { cache: 'no-store' }).then(function (response) {
                       if (response.ok) {
                         response.json().then(function (novoRegistro) {
 
@@ -1198,24 +1235,24 @@
                           console.log(`Dados atuais do gráfico: ${dadosUso}`);
                           console.log(`Dados atuais do gráfico: ${dadosIdle}`);
                           console.log(`Dados atuais do gráfico: ${dadosIO}`);
-                          
 
-                          console.log("NOVO REGISTRO",novoRegistro);
+
+                          console.log("NOVO REGISTRO", novoRegistro);
 
                           dadosUso.labels.shift();  // apagar o primeiro de temperatura
                           dadosUso.labels.push(novoRegistro[0].momento); // incluir uma nova medida de temperatura
                           dadosUso.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                          dadosUso.datasets[0].data.push(novoRegistro[0].uso); 
+                          dadosUso.datasets[0].data.push(novoRegistro[0].uso);
 
                           dadosIdle.labels.shift();  // apagar o primeiro de temperatura
                           dadosIdle.labels.push(novoRegistro[0].momento); // incluir uma nova medida de temperatura
                           dadosIdle.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                          dadosIdle.datasets[0].data.push(novoRegistro[0].inativo); 
+                          dadosIdle.datasets[0].data.push(novoRegistro[0].inativo);
 
                           dadosIO.labels.shift();  // apagar o primeiro de temperatura
                           dadosIO.labels.push(novoRegistro[0].momento); // incluir uma nova medida de temperatura
                           dadosIO.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                          dadosIO.datasets[0].data.push(novoRegistro[0].entrada); 
+                          dadosIO.datasets[0].data.push(novoRegistro[0].entrada);
 
                           window.grafico_linhaUso.update();
                           window.grafico_linhaIDLE.update();
@@ -1351,11 +1388,11 @@
             </div>
           </div>
 
-          
+
         </div>
 
       </div>
-   
+
     </div>
     <!-- /.row-->
 
