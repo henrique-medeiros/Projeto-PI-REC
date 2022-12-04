@@ -111,11 +111,13 @@ function alertas(req, res) {
     var metrica = req.body.metricaServer;
     var empresa = req.body.empresaServer;
     var criticidade = req.body.criticidadeServer;
+    var fkAtm1 = req.body.fkAtmServer1;
     
     console.log(componente)
     console.log(metrica)
     console.log(empresa)
     console.log(criticidade)
+    console.log(fkAtm1)
     // Faça as validações dos valores
     if (componente == undefined) {
         res.status(400).send("Seu componente está undefined!");
@@ -125,10 +127,12 @@ function alertas(req, res) {
         res.status(400).send("Seu empresa está undefined!");
     } else if (criticidade == undefined) {
         res.status(400).send("Sua criticidade está undefined!");
+    } else if (fkAtm1 == undefined) {
+        res.status(400).send("Seu Atm está undefined!");
     } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.alertas(componente,metrica,empresa,criticidade)
+        usuarioModel.alertas(componente,metrica,empresa,criticidade,fkAtm1)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -145,6 +149,8 @@ function alertas(req, res) {
             );
     }
 }
+
+
 
 module.exports = {
     entrar,

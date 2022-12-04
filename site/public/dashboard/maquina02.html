@@ -520,7 +520,7 @@
 
 
 
-                  function alertas(metrica, email, nome, empresa, componente, frase, criticidade) {
+                  function alertas(metrica, email, nome, empresa, componente, frase, criticidade, fkAtm1) {
 
                     const options = {
                       method: 'POST',
@@ -552,7 +552,7 @@
                         metricaServer: metrica,
                         empresaServer: empresa,
                         criticidadeServer: criticidade,
-
+                        fkAtmServer1: fkAtm1,
                       })
                     }).then(function (resposta) {
                       if (resposta.ok) {
@@ -586,6 +586,8 @@
 
                     var email = sessionStorage.EMAIL_USUARIO
 
+                    var fkAtm1 = 2
+
                     if (componente == "CPU") {
                       if (contador <= 2) {
                         if (metrica >= 41) {
@@ -618,7 +620,7 @@
                             criticidade = "Critico"
                           }
 
-                          alertas(metrica, email, nome, empresa, componente, frase, criticidade)
+                          alertas(metrica, email, nome, empresa, componente, frase, criticidade, fkAtm1)
 
 
                           console.log("INICIANDO O FETCH");
@@ -669,7 +671,7 @@
                             criticidade = "Critico"
                           }
 
-                          alertas(metrica, email, nome, empresa, componente, frase, criticidade)
+                          alertas(metrica, email, nome, empresa, componente, frase, criticidade, fkAtm1)
 
                           console.log("INICIANDO O FETCH");
 
@@ -723,7 +725,7 @@
                           }
 
 
-                          alertas(metrica, email, nome, empresa, componente, frase, criticidade)
+                          alertas(metrica, email, nome, empresa, componente, frase, criticidade, fkAtm1)
 
                           console.log("INICIANDO O FETCH");
 

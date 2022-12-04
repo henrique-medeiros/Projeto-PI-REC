@@ -24,4 +24,5 @@ router.post("/alertas", function (req, res) {
     usuarioController.alertas(req, res);
 });
 
+
 module.exports = router;
