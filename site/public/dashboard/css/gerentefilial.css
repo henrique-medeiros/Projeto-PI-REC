@@ -10808,7 +10808,7 @@ html:not([dir=rtl]) .text-center {
 
 .bg-primary {
   --cui-bg-opacity: 1;
-  background-color: #006E7F !important;
+  background-color: #222831 !important;
   box-shadow: 3px 3px 3px 1px rgb(159, 159, 159);
 
 }
@@ -10821,7 +10821,7 @@ html:not([dir=rtl]) .text-center {
 
 .bg-secondary {
   --cui-bg-opacity: 1;
-  background-color: #F8CB2E !important;
+  background-color: #393E46 !important;
   box-shadow: 3px 3px 3px 1px rgb(159, 159, 159);
 }
 .bg-secondary:hover {
@@ -10838,7 +10838,7 @@ html:not([dir=rtl]) .text-center {
 
 .bg-info {
   --cui-bg-opacity: 1;
-  background-color: #B22727 !important;
+  background-color: #FD7014 !important;
   box-shadow:3px 3px 3px 1px rgb(159, 159, 159);
 }
 .bg-info:hover {
