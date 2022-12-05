@@ -122,11 +122,11 @@ function buscarMedidaTemp(req, res) {
 
     const limite_linhas = 6;
 
-    var fkAtm = req.params.fkAtm;
+    var fkTemp = req.params.fkTemp;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarMedidaTemp(fkAtm, limite_linhas).then(function (resultado) {
+    medidaModel.buscarMedidaTemp(fkTemp, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

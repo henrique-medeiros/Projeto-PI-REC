@@ -161,7 +161,7 @@ function toniniFofo() {
 }
 
 //Veio
-function buscarMedidaTemp(fkAtm, limite_linhas) {
+function buscarMedidaTemp(fkTemp, limite_linhas) {
 
     instrucaoSql = ''
 

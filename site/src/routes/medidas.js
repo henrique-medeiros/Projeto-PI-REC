@@ -27,7 +27,7 @@ router.get("/toniniFofo", function (req, res) {
 })
 
 //veio
-router.get("/ultimas-temp/:fkAtm", function (req, res) {
+router.get("/ultimas-temp/:fkTemp", function (req, res) {
     medidaController.buscarMedidaTemp(req, res);
 })
 

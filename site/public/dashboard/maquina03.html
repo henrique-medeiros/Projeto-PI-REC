@@ -505,13 +505,14 @@
                 <canvas id="canvas_grafico"></canvas>
 
                 <script>
-
                   contador = 0
 
                   let proximaAtualizacao;
 
-                  window.onload = obterDadosGrafico(2);
-                  window.onload = obterDadosGraficoCpu(2)
+                  window.onload = obterDadosGrafico(1);
+                  window.onload = obterDadosGraficoCpu(1)
+                  window.onload = obterDadosGraficoTemp(1);
+
 
 
                   // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
@@ -520,7 +521,7 @@
 
 
 
-                  function alertas(metrica, email, nome, empresa, componente, frase, criticidade, fkAtm1) {
+                  function alertas(metrica, email, nome, empresa, componente, frase, criticidade,fkAtm1) {
 
                     const options = {
                       method: 'POST',
@@ -553,6 +554,7 @@
                         empresaServer: empresa,
                         criticidadeServer: criticidade,
                         fkAtmServer1: fkAtm1,
+
                       })
                     }).then(function (resposta) {
                       if (resposta.ok) {
@@ -686,9 +688,9 @@
 
                       if (contador <= 2) {
 
-                        if (metrica >= 90) {
+                        if (metrica >= 80) {
 
-                          if (metrica < 100) {
+                          if (metrica < 89) {
 
 
                             setTimeout(() => {
@@ -726,7 +728,7 @@
                           }
 
 
-                          alertas(metrica, email, nome, empresa, componente, frase, criticidade, fkAtm1)
+                          alertas(metrica, email, nome, empresa, componente, frase, criticidade,fkAtm1)
 
                           console.log("INICIANDO O FETCH");
 
@@ -793,7 +795,31 @@
                       });
                   }
 
-                  function plotarGrafico(resposta, id, idAtm) {
+                  function obterDadosGraficoTemp(fkTemp) {
+                    // alterarTitulo(idAquario)
+                    
+                    if (proximaAtualizacao != undefined) {
+                      clearTimeout(proximaAtualizacao);
+                    }
+
+                    fetch(`/medidas/ultimas-temp/${fkTemp}`, { cache: 'no-store' }).then(function (response) {
+                      if (response.ok) {
+                        response.json().then(function (resposta) {
+                          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                          resposta.reverse();
+
+                          plotarGrafico(resposta);
+                        });
+                      } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                      }
+                    })
+                      .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                      });
+                  }
+
+                  function plotarGrafico(resposta, id, idAtm, fkTemp) {
                     console.log('iniciando plotagem do gráfico...');
                     const fkAtm = 3
                     var dados = {
@@ -896,6 +922,22 @@
                       ]
                     };
 
+                    var dadosTemp = {
+                      labels: [],
+                      datasets: [
+                        {
+                          yAxisID: 'yAxisDisc',
+                          xAxisID: 'xAxisDisc',
+                          label: 'Temperatura CPU (°C)',
+                          borderColor: '#000814',
+                          backgroundColor: '#0d6efd',
+                          pointRadius: 6,
+                          fill: true,
+                          data: []
+                        }
+                      ]
+                    };
+
                     for (i = 0; i < resposta.length; i++) {
                       var registro = resposta[i];
                       dados.labels.push(registro.momento_grafico);
@@ -911,6 +953,9 @@
                       dadosIdle.datasets[0].data.push(registro.cpuIdle)
                       dadosIO.labels.push(registro.momento)
                       dadosIO.datasets[0].data.push(registro.cpuIO)
+
+                      dadosTemp.labels.push(registro.momento)
+                      dadosTemp.datasets[0].data.push(registro.tMed)
 
                     }
 
@@ -1099,10 +1144,40 @@
                       }
                     })
 
-                    setTimeout(() => atualizarGrafico(fkAtm, idAtm, dados, dados2, dados3, dadosUso, dadosIdle, dadosIO), 2000);
+                    window.grafico_linhaTemp = new Chart(canvas_graficoTemp, {
+                      type: 'line',
+                      data: dadosTemp,
+                      options: {
+                        responsive: true,
+                        animation: { duration: 500 },
+                        hoverMode: 'index',
+                        stacked: false,
+                        title: {
+                          display: false,
+                          text: 'Dados capturados'
+                        },
+                        scales: {
+                          yAxes: [{
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            id: 'memoriaTotem',
+                            ticks: {
+                              beginAtZero: true,
+                              max: 100,
+                              min: 0
+                            }
+                          }, 
+                        
+                        ],
+                        }
+                      }
+                    })
+
+                    setTimeout(() => atualizarGrafico(fkAtm, idAtm, dados, dados2, dados3, dadosUso, dadosIdle, dadosIO, dadosTemp, fkTemp), 2000);
                   }
 
-                  function atualizarGrafico(fkAtm, idAtm, dados, dados2, dados3, dadosUso, dadosIdle, dadosIO) {
+                  function atualizarGrafico(fkAtm, idAtm, dados, dados2, dados3, dadosUso, dadosIdle, dadosIO, dadosTemp, fkTemp) {
 
                     fetch(`/medidas/tempo-real-atm/${fkAtm}`, { cache: 'no-store' }).then(function (response) {
                       if (response.ok) {
@@ -1217,9 +1292,11 @@
                           window.grafico_linhaUso.update();
                           window.grafico_linhaIDLE.update();
                           window.grafico_linhaIO.update();
+                          window.grafico_linhaTemp.update();
+
 
                           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                          proximaAtualizacao = setTimeout(() => atualizarGrafico(fkAtm, idAtm, dados, dados2, dados3, dadosUso, dadosIdle, dadosIO), 2000);
+                          proximaAtualizacao = setTimeout(() => atualizarGrafico(fkAtm, idAtm, dados, dados2, dados3, dadosUso, dadosIdle, dadosIO, dadosTemp, fkTemp), 2000);
                         });
                       } else {
                         console.error('Nenhum dado encontrado ou erro na API');
@@ -1259,6 +1336,40 @@
                           window.grafico_linhaUso.update();
                           window.grafico_linhaIDLE.update();
                           window.grafico_linhaIO.update();
+
+
+                        }
+                        );
+                      } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                      }
+                    }
+                    )
+                      .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                      });
+
+
+                      fetch(`/medidas/ultimas-temp/${fkTemp}`, { cache: 'no-store' }).then(function (response) {
+                      if (response.ok) {
+                        response.json().then(function (novoRegistro) {
+
+                          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                          console.log(`Dados atuais do gráfico: ${dadosTemp}`);
+                          
+                        
+                          console.log("NOVO REGISTRO",novoRegistro);
+
+                          
+                          
+                          dadosTemp.labels.shift();  // apagar o primeiro de temperatura
+                          dadosTemp.labels.push(novoRegistro[0].momento); // incluir uma nova medida de temperatura
+                          dadosTemp.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                          dadosTemp.datasets[0].data.push(novoRegistro[0].real); 
+
+                          window.grafico_linhaTemp.update();
+                          
 
 
                         }
@@ -1318,32 +1429,32 @@
                 <h5 class="card-title">CPU</h5>
 
                 <!-- Line Chart -->
-                <canvas id="lineChart3" style="max-height: 400px;"></canvas>
+                <canvas id="canvas_graficoTemp" style="max-height: 400px;"></canvas>
                 <script>
-                  document.addEventListener("DOMContentLoaded", () => {
-                    new Chart(document.querySelector('#lineChart3'), {
-                      type: 'line',
-                      data: {
-                        labels: ['14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'],
-                        datasets: [{
-                          label: 'Temperatura da CPU (°C)',
-                          data: [65, 90, 95, 100, 95, 90, 65],
-                          fill: false,
-                          borderColor: 'grey',
-                          backgroundColor: ['green', 'yellow', 'orange', 'red', 'orange', 'yellow', 'green'],
-                          pointRadius: 8,
-                          tension: 0.1
-                        }]
-                      },
-                      options: {
-                        scales: {
-                          y: {
-                            beginAtZero: true
-                          }
-                        }
-                      }
-                    });
-                  });
+                  // document.addEventListener("DOMContentLoaded", () => {
+                  //   new Chart(document.querySelector('#lineChart3'), {
+                  //     type: 'line',
+                  //     data: {
+                  //       labels: ['14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'],
+                  //       datasets: [{
+                  //         label: 'Temperatura da CPU (°C)',
+                  //         data: [65, 90, 95, 100, 95, 90, 65],
+                  //         fill: false,
+                  //         borderColor: 'grey',
+                  //         backgroundColor: ['green', 'yellow', 'orange', 'red', 'orange', 'yellow', 'green'],
+                  //         pointRadius: 8,
+                  //         tension: 0.1
+                  //       }]
+                  //     },
+                  //     options: {
+                  //       scales: {
+                  //         y: {
+                  //           beginAtZero: true
+                  //         }
+                  //       }
+                  //     }
+                  //   });
+                  // });
                 </script>
 
 
