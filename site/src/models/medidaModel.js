@@ -148,10 +148,23 @@ function buscarMedidaAtm(fkAtm, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
+function toniniFofo() {
+    instrucaoSql = ''
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select top 7 t1.novaDate, avg(t2.memoriaTotem) as memoria from (select *, format(dataHora, 'd') as novaDate from Leitura) t1 join Leitura t2 on t1.idLeitura = t2.idLeitura group by novaDate order by novaDate desc`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarMedidaIdle, 
     buscarMedidasTempoRealporAtm,
-    buscarMedidaAtm
+    buscarMedidaAtm,
+    toniniFofo
 }
