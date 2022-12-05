@@ -26,5 +26,10 @@ router.get("/toniniFofo", function (req, res) {
     medidaController.toniniFofo(req, res);
 })
 
+//veio
+router.get("/ultimas-temp/:fkAtm", function (req, res) {
+    medidaController.buscarMedidaTemp(req, res);
+})
+
 
 module.exports = router;

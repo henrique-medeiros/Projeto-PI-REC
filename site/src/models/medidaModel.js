@@ -160,11 +160,43 @@ function toniniFofo() {
     return database.executar(instrucaoSql);
 }
 
+//Veio
+function buscarMedidaTemp(fkAtm, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select top ${limite_linhas} tMin as minimo, tMed as real, tMax as maximo, dataHora,
+        CONVERT(varchar, dataHora, 108) as momento,
+        fkAtm 
+        from Temperatura, Atm
+        where fkAtm = idAtm
+        order by idTemp desc`;
+    
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select cpuTotem as cpu, memoriaTotem as memoria, discoTotem as disco, 
+                        dataHora,
+                        DATE_FORMAT(dataHora,'%H:%i:%s') as momento_grafico
+                    from leitura
+                    where fkAtm = ${idAquario}
+                    order by idLeitura desc ${limite_linhas}`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarMedidaIdle, 
     buscarMedidasTempoRealporAtm,
     buscarMedidaAtm,
-    toniniFofo
+    toniniFofo,
+    buscarMedidaTemp
 }

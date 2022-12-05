@@ -117,11 +117,34 @@ function toniniFofo(req, res) {
     });
 }
 
+//Veio
+function buscarMedidaTemp(req, res) {
+
+    const limite_linhas = 6;
+
+    var fkAtm = req.params.fkAtm;
+
+    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+
+    medidaModel.buscarMedidaTemp(fkAtm, limite_linhas).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarMedidaIdle, 
     buscarMedidasTempoRealporAtm,
     buscarMedidaAtm,
-    toniniFofo
+    toniniFofo,
+    buscarMedidaTemp
 }
