@@ -24,5 +24,14 @@ router.post("/alertas", function (req, res) {
     usuarioController.alertas(req, res);
 });
 
+router.post("/listarCriticidade", function (req, res) {
+    usuarioController.listarCriticidade(req, res);
+});
+
+router.post("/listaUsuarios", function (req, res) {
+    usuarioController.listaUsuarios(req, res);
+});
+
+
 
 module.exports = router;

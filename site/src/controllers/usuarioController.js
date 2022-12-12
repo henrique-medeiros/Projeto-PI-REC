@@ -152,10 +152,71 @@ function alertas(req, res) {
 
 
 
+function listarCriticidade(req, res) {
+
+    var criticidade = req.body.criticidadeServer
+
+    if (criticidade == undefined) {
+        res.status(400).send("Sua criticidade está undefined!");
+    } else {
+
+        usuarioModel.listarCriticidade(criticidade)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    if (resultado.length > 1) {
+                        console.log(resultado);
+                        res.json(resultado);
+                    } else if (resultado.length == 0) {
+                        res.status(403).send("Email e/ou senha inválido(s)");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+}
+
+
+function listaUsuarios(req, res) {
+    var fkFilial = req.body.fkFilialServer;
+
+    if (fkFilial == undefined) {
+        res.status(400).send("Sua filial está undefined!");
+    } else {
+
+        usuarioModel.listaUsuarios(fkFilial)
+            .then(function (resultado) {
+                if (resultado.length > 0) {
+                    console.log(resultado);
+                    res.json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!")
+                }
+            }).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao selecionar os usuarios! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
     testar,
-    alertas
+    alertas,
+    listarCriticidade,
+    listaUsuarios
 }

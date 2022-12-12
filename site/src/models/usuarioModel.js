@@ -45,9 +45,29 @@ function alertas(componente,metrica,empresa,criticidade,fkAtm1) {
 
 
 
+function listarCriticidade(criticidade){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarMaq()",criticidade);
+    var instrucao = `
+        SELECT * from Chamados where Criticidade = '${criticidade}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function listaUsuarios(fkFilial){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listaUsuarios()");
+    var instrucao = `
+    select nomeUsuario as 'Nome', emailUsuario as 'Email', fkLicenca as 'Licença', fkFilial as 'Código Filial' from Usuario  where fkFilial = '${fkFilial}'
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
-    alertas
+    alertas,
+    listarCriticidade,
+    listaUsuarios
 };

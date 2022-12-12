@@ -272,7 +272,7 @@
         <svg width="118" height="46" alt="CoreUI Logo">
           <use xlink:href="assets/brand/coreui.svg#full"></use>
         </svg>
-        <h2>Dashboard | Inicial</h2></a>
+        <h2>Dashboard | Analista</h2></a>
         <!-- <ul class="header-nav d-none d-md-flex">
             <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Usuários</a></li>
@@ -653,6 +653,10 @@
 
               </div>
             </div>
+            
+          <div class="chamados1"><h5>Quantidade de Chamados no Atm</h5> 
+            <canvas id="chartChamados"></canvas>
+          </div>
           </div>
 
           <div class="linha2">
@@ -695,6 +699,7 @@
               </div>
             </div>
           </div>
+
 
           
 
@@ -742,3 +747,101 @@
 </body>
 
 </html>
+
+</script>
+<!-- GRAFICO ALERTAS -->
+<script>
+  var vetor_alerta = []
+  var vetor_emergencial = []
+  var vetor_critico = []
+  // var fkAtm = 1
+
+  listarCriticidade('Alerta')
+  listarCriticidade('Emergencial')
+  listarCriticidade('Critico')
+  setTimeout(() => plotarGraficoChamado(), 3000);
+  setTimeout(() => createTable(), 3000);
+
+
+  function listarCriticidade(criticidade) {
+
+    fetch("/usuarios/listarCriticidade", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        criticidadeServer: criticidade,
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          // console.log(json);
+          // console.log(JSON.stringify(json));
+          json.forEach(element => {
+            if (criticidade == 'Alerta') {
+              vetor_alerta.push(element)
+            } else if (criticidade == 'Emergencial') {
+              vetor_emergencial.push(element)
+            } else if (criticidade == 'Critico') {
+              vetor_critico.push(element)
+            }
+          });
+        });
+
+
+      } else {
+
+        console.log("Houve um erro ao tentar realizar o login!");
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+  }
+
+  function plotarGraficoChamado() {
+    var numAlerta = vetor_alerta.length
+    var numEmergencial = vetor_emergencial.length
+    var numCritico = vetor_critico.length
+    const labels = ['Alerta', 'Emergencial', 'Critico']
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Chamados',
+        data: [numAlerta, numEmergencial, numCritico],
+        backgroundColor: [
+          'rgb(0, 0, 255)',
+          'rgb(0, 128, 255)',
+          'rgb(0, 191, 255)'
+        ],
+        borderColor: [
+          'rgb(0, 0, 0)',
+          'rgb(0, 0, 0)',
+          'rgb(0, 0, 0)'
+        ],
+        borderWidth: 1
+      }]
+    };
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      },
+    };
+    const myChart = new Chart(
+      document.getElementById('chartChamados'),
+      config
+    );
+  }
+
+</script>
