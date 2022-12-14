@@ -220,17 +220,17 @@
         <ul class="nav-group-items">
           <li class="nav-item"><a class="nav-link" href="../dashboard/maquina01.html" target="_top">
               <svg class="nav-icon">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
+                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
               </svg>Máquina 1</a></li>
 
           <li class="nav-item"><a class="nav-link" href="../dashboard/maquina02.html" target="_top">
               <svg class="nav-icon">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
+                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
               </svg>Máquina 2</a></li>
 
-          <li class="nav-item"><a class="nav-link" href="../dashboard/maquina03.html" target="_top">
+          <li class="nav-item"><a class="nav-link" href="../dashboard/maquina01.html" target="_top">
               <svg class="nav-icon">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
+                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
               </svg>Máquina 3</a></li>
         </ul>
       </li>
@@ -425,7 +425,7 @@
 
 
         <!-- /.row-->
-        <div class="card mb-4">
+        <!-- <div class="card mb-4">
           <div class="card-body">
             <div class="d-flex justify-content-between">
               <div>
@@ -441,7 +441,7 @@
                   <input class="btn-check" id="option3" type="radio" name="options" autocomplete="off">
                   <label class="btn btn-outline-secondary"> Ano</label>
                 </div>
-                <!-- <button class="btn btn-primary" type="button"> -->
+                <!-- <button class="btn btn-primary" type="button"> 
                 <svg class="icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cloud-download"></use>
                 </svg>
@@ -472,7 +472,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
 
         <!-- Alerta do percentual de uso da cpu
         <div class="alert alert-danger" id="alerta_div">
@@ -877,7 +877,7 @@
                         {
                           yAxisID: 'yAxisCPU',
                           xAxisID: 'xAxisCPU',
-                          label: 'Tempo de atividade da CPU(min)',
+                          label: 'Tempo de atividade da CPU(Horas)',
                           borderColor: '#000814',
                           backgroundColor: '#A020F0',
                           pointRadius: 6,
@@ -894,7 +894,7 @@
                         {
                           yAxisID: 'yAxisCPU',
                           xAxisID: 'xAxisCPU',
-                          label: 'Tempo de inatividade da CPU(seg)',
+                          label: 'Tempo de inatividade da CPU(Minutos)',
                           borderColor: '#000814',
                           backgroundColor: '#ADFF2F',
                           pointRadius: 6,
@@ -911,7 +911,7 @@
                         {
                           yAxisID: 'yAxisCPU',
                           xAxisID: 'xAxisCPU',
-                          label: 'Tempo de I/O da CPU(seg)',
+                          label: 'Tempo de I/O da CPU()',
                           borderColor: '#000814',
                           backgroundColor: '#00BFFF',
                           pointRadius: 6,
